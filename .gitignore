@@ -217,9 +217,12 @@ pip-log.txt
 ##############
 ## Unity
 ##############
-Temp/
-obj/
-library/
+.DS_Store
+Library
+Library/*
 *.csproj
-*.unityproj
 *.sln
+*.userprefs
+Temp
+*.pidb
+Build
