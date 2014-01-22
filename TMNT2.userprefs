@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\HUDData.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\HUDScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\HUDData.cs" Line="6" Column="1" />
+      <File FileName="Assets\Scripts\HealthBarScript.cs" Line="14" Column="1" />
+      <File FileName="Assets\Scripts\HUDScript.cs" Line="12" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

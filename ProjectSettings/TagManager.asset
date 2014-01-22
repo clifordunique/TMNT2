@@ -61,11 +61,7 @@ TagManager:
     userID: 3
     uniqueID: 4195979387
     locked: 0
-  - name: Enemies
-    userID: 4
-    uniqueID: 1803691769
-    locked: 0
-  - name: Player
+  - name: Characters
     userID: 5
     uniqueID: 3601796335
     locked: 0
