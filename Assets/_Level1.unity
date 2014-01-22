@@ -3060,7 +3060,6 @@ GameObject:
   - 4: {fileID: 1554791942}
   - 61: {fileID: 1554791941}
   - 61: {fileID: 1554791940}
-  - 61: {fileID: 1554791939}
   - 61: {fileID: 1554791938}
   m_Layer: 0
   m_Name: ScreenCollider
@@ -3081,18 +3080,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 15, y: 230}
   m_Center: {x: 248.5, y: 115}
---- !u!61 &1554791939
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6100002, guid: f7cd7f94186b2014bb0ad0680be1474f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1981607766}
-  m_GameObject: {fileID: 1554791937}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Size: {x: 256, y: 1}
-  m_Center: {x: 128, y: 230.5}
 --- !u!61 &1554791940
 BoxCollider2D:
   m_ObjectHideFlags: 0
