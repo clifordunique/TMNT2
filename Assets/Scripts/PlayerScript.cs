@@ -10,11 +10,11 @@ public class PlayerScript : MonoBehaviour {
 
 
 
-
+	public float deltaX = 0;
 	public float yPos = 0;
 	public float jumpPos = 0;
 	private float jumpVelocity = 0;
-	private float jumpAccel = -5.7f;
+	private float jumpAccel = -10f;
 
 	private Animator animator;
 	
@@ -27,26 +27,26 @@ public class PlayerScript : MonoBehaviour {
 	void Update() 
 	{
 		//Didnt use getaxis because it has acceleration
-		float deltaX = 0;
+		deltaX = 0;
 
 		if(Input.GetKey(KeyCode.RightArrow))
 		{
-			deltaX += .45f;
+			deltaX += .8f;
 		}
 		if(Input.GetKey(KeyCode.LeftArrow))
 		{
-			deltaX += -.45f;
+			deltaX += -.8f;
 		}
 
 		float deltaY = 0;
 
 		if(Input.GetKey(KeyCode.UpArrow))
 		{
-			deltaY += .3f;
+			deltaY += .7f;
 		}
 		if(Input.GetKey(KeyCode.DownArrow))
 		{
-			deltaY += -.3f;
+			deltaY += -.7f;
 		}
 
 
@@ -60,7 +60,7 @@ public class PlayerScript : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.F) && jumpPos == 0)
 		{
-			jumpVelocity = 2.9f;
+			jumpVelocity = 5.7f;
 			deltaJump += jumpVelocity;
 		}
 
@@ -122,7 +122,7 @@ public class PlayerScript : MonoBehaviour {
 		{
 
 
-			if(jumpVelocity < 1.4f)
+			if(jumpVelocity < 3.6f)
 			{
 				animator.Play("RaphaelJumpSpin");
 			}

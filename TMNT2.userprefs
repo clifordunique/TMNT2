@@ -1,10 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ShadowScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ScreenScrollScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\PlayerScript.cs" Line="80" Column="4" />
-      <File FileName="Assets\Scripts\HealthBarScript.cs" Line="14" Column="1" />
-      <File FileName="Assets\Scripts\ShadowScript.cs" Line="26" Column="29" />
+      <File FileName="Assets\Scripts\PlayerScript.cs" Line="125" Column="25" />
+      <File FileName="Assets\Scripts\ScreenScrollScript.cs" Line="22" Column="1" />
+      <File FileName="Assets\Scripts\HealthBarScript.cs" Line="14" Column="49" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

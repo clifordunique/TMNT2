@@ -14,7 +14,7 @@ public class ShadowScript : MonoBehaviour {
 		GameObject player = GameObject.Find("Player");
 		PlayerScript playerScript = player.GetComponent<PlayerScript>();
 
-		if(playerScript.jumpPos == 0)
+		if(playerScript.jumpPos < 5)
 		{
 			this.renderer.enabled = false;
 		}
