@@ -8,13 +8,146 @@ public class PlayerScript : MonoBehaviour {
 	public int pts = 0;
 
 
-	// Use this for initialization
-	void Start () {
+
+
+
+	public float yPos = 0;
+	public float jumpPos = 0;
+	private float jumpVelocity = 0;
+	private float jumpAccel = -5.7f;
+
+	private Animator animator;
 	
+	void Start() 
+	{
+		animator = this.GetComponent<Animator>();
+		yPos = transform.position.y;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	void Update() 
+	{
+		//Didnt use getaxis because it has acceleration
+		float deltaX = 0;
+
+		if(Input.GetKey(KeyCode.RightArrow))
+		{
+			deltaX += .45f;
+		}
+		if(Input.GetKey(KeyCode.LeftArrow))
+		{
+			deltaX += -.45f;
+		}
+
+		float deltaY = 0;
+
+		if(Input.GetKey(KeyCode.UpArrow))
+		{
+			deltaY += .3f;
+		}
+		if(Input.GetKey(KeyCode.DownArrow))
+		{
+			deltaY += -.3f;
+		}
+
+
+		float deltaJump = 0;
+
+		if(jumpPos > 0)
+		{
+			jumpVelocity += jumpAccel * Time.deltaTime;
+			deltaJump += jumpVelocity;
+		}
+
+		if(Input.GetKeyDown(KeyCode.F) && jumpPos == 0)
+		{
+			jumpVelocity = 2.9f;
+			deltaJump += jumpVelocity;
+		}
+
+		if(jumpPos < 0)
+		{
+			jumpPos = 0;
+		}
+
+		jumpPos += deltaJump;
+		
+		float x = transform.position.x + deltaX;
+
+		//Using Z axis for Isometric effect
+		float z = yPos + deltaY;
+
+		if(z > 105)
+		{
+			z = 105;
+		}
+		else if(z < 15)
+		{
+			z = 15;
+		}
+
+		yPos = z;
+
+		float y = z + jumpPos + deltaJump;
+
+		transform.position = new Vector3(x, y, z);
+
+
+
+
+
+
+
+
+
+
+		//Flip sprite left/right
+		if (deltaX < 0 && transform.localScale.x > 0)
+			transform.localScale = new Vector3(-1f, 1f, 1f);
+		else if (deltaX > 0 && transform.localScale.x < 0)
+			transform.localScale = new Vector3(1f, 1f, 1f);
+
+		//All animations are handled here
+		if(jumpPos == 0)
+		{
+			if(deltaX != 0 || deltaY != 0)
+			{
+				animator.Play("RaphaelWalk");
+			}
+			else
+			{
+				animator.Play("RaphaelIdle");
+			}
+		}
+		else
+		{
+
+
+			if(jumpVelocity < 1.4f)
+			{
+				animator.Play("RaphaelJumpSpin");
+			}
+			else
+			{
+				animator.Play("RaphaelJump");
+			}
+
+
+
+		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
