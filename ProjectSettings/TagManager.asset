@@ -41,14 +41,6 @@ TagManager:
     userID: 0
     uniqueID: 0
     locked: 0
-  - name: HUDBackground
-    userID: 7
-    uniqueID: 2805197503
-    locked: 0
-  - name: HUDForeground
-    userID: 8
-    uniqueID: 2173451647
-    locked: 0
   - name: Static Background
     userID: 1
     uniqueID: 2979641585
@@ -68,4 +60,12 @@ TagManager:
   - name: Foreground
     userID: 6
     uniqueID: 110484393
+    locked: 0
+  - name: HUDBackground
+    userID: 7
+    uniqueID: 2805197503
+    locked: 0
+  - name: HUDForeground
+    userID: 8
+    uniqueID: 2173451647
     locked: 0
