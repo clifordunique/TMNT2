@@ -3855,6 +3855,7 @@ GameObject:
   - 95: {fileID: 1770327622}
   - 212: {fileID: 1770327621}
   - 61: {fileID: 1770327625}
+  - 50: {fileID: 1770327626}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3916,6 +3917,7 @@ MonoBehaviour:
   life: 12
   rest: 2
   pts: 0
+  turtleName: RAPH
   deltaX: 0
   yPos: 0
   jumpPos: 0
@@ -3941,6 +3943,21 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_Size: {x: 22, y: 48}
   m_Center: {x: 0, y: 24}
+--- !u!50 &1770327626
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1770327620}
+  m_Mass: 9.99999975e-05
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_FixedAngle: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!1001 &1783762464
 Prefab:
   m_ObjectHideFlags: 0

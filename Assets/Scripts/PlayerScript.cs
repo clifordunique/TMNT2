@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour {
 	public int life = 12;
 	public int rest = 2;
 	public int pts = 0;
-
+	public string turtleName = "RAPH";
 
 
 
