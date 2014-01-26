@@ -20,6 +20,24 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+--- !u!1101 &110100000
+Transition:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110284639}
+  m_DstState: {fileID: 110237078}
+  m_TransitionDuration: .0415966846
+  m_TransitionOffset: .168067679
+  m_Conditions:
+  - m_ConditionMode: 5
+    m_ConditionEvent: 
+    m_EventTreshold: 0
+    m_ExitTime: .958403289
+  m_Atomic: 0
+  m_Solo: 0
+  m_Mute: 0
 --- !u!1102 &110200000
 State:
   m_ObjectHideFlags: 3
@@ -50,6 +68,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110220506
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: RaphaelSpecialAttack
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 6e63138fc3ee66c499ff693c01fc4bac, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -72, y: 132, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110228142
 State:
   m_ObjectHideFlags: 3
@@ -62,6 +95,21 @@ State:
   - {fileID: 7400000, guid: 134ada94064eb69489c18df135be45cc, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -312, y: -120, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110237078
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: RaphaelAttack2End
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: dc831ca6cfc03b44c8d75e8ce6fb1092, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -312, y: 132, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -125,6 +173,8 @@ StateMachine:
   - {fileID: 110273138}
   - {fileID: 110238439}
   - {fileID: 110284639}
+  - {fileID: 110237078}
+  - {fileID: 110220506}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
@@ -146,6 +196,10 @@ StateMachine:
     data:
       first: {fileID: 110238439}
       second: []
+    data:
+      first: {fileID: 110284639}
+      second:
+      - {fileID: 110100000}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -180, y: -180, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

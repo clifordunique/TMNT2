@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour {
 	public string turtleName = "RAPH";
 
 	private bool attacking = false;
+	private bool specialAttack = false;
 
 	public float deltaX = 0;
 	private float deltaY = 0;
@@ -34,8 +35,17 @@ public class PlayerScript : MonoBehaviour {
 	{
 		if(attacking)
 		{
-			if(jumpPos == 0)
+			if(jumpPos <= 1 && animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelJumpKick"))
 			{
+				attacking = false;
+			}
+			else if(animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelAttack2End"))
+			{
+				attacking = false;
+			}
+			else if(jumpPos <= 1 && animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelSpecialAttackEnd"))
+			{
+				specialAttack = false;
 				attacking = false;
 			}
 		}
@@ -101,6 +111,15 @@ public class PlayerScript : MonoBehaviour {
 				{
 					jumpKickVelocity *= transform.localScale.x;
 				}
+			}
+			else if(jumpVelocity > 5f)
+			{
+				jumpVelocity = 3;
+				specialAttack = true;
+			}
+			else if(jumpPos != 0)
+			{
+				attacking = false;
 			}
 		}
 	}
@@ -171,13 +190,17 @@ public class PlayerScript : MonoBehaviour {
 				else if (deltaX > 0 && transform.localScale.x < 0)
 					transform.localScale = new Vector3(1f, 1f, 1f);
 
-				if(jumpVelocity < 3.6f)
+				if(specialAttack && !animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelSpecialAttackEnd"))
+				{
+					animator.Play("RaphaelSpecialAttack");
+				}
+				else if(animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelSpecialAttackEnd"))
+				{
+					animator.Play("RaphaelSpecialAttackEnd");
+				}
+				else if(jumpVelocity < 3.6f)
 				{
 					animator.Play("RaphaelJumpKick");
-				}
-				else
-				{
-					//Special Attack
 				}
 			}
 		}
