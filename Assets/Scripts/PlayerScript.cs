@@ -24,11 +24,9 @@ public class PlayerScript : MonoBehaviour {
 	private float jumpKickVelocity = 0;
 
 	private Animator animator;
-	private LevelDataScript levelData;
-
+	
 	void Start() 
 	{
-		levelData = GameObject.Find("LevelData").GetComponent<LevelDataScript>();
 		animator = this.GetComponent<Animator>();
 		yPos = transform.position.y;
 	}
@@ -145,9 +143,9 @@ public class PlayerScript : MonoBehaviour {
 		//Using Z axis for Isometric effect
 		float z = yPos + deltaY;
 		
-		if(z > levelData.walkSpaceHeight)
+		if(z > 105)
 		{
-			z = levelData.walkSpaceHeight;
+			z = 105;
 		}
 		else if(z < 15)
 		{
