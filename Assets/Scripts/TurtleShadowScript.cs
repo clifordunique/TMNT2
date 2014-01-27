@@ -2,25 +2,24 @@
 using System.Collections;
 
 public class TurtleShadowScript : MonoBehaviour {
-	private SpriteRenderer renderer;
+	private GameObject player;
+	private PlayerScript playerScript;
 
 	void Start() 
 	{
-		renderer = this.GetComponent<SpriteRenderer>();
+		player = GameObject.Find("Player");
+		playerScript = player.GetComponent<PlayerScript>();
 	}
 
 	void Update() 
 	{
-		GameObject player = GameObject.Find("Player");
-		PlayerScript playerScript = player.GetComponent<PlayerScript>();
-
 		if(playerScript.jumpPos < 5)
 		{
-			this.renderer.enabled = false;
+			this.gameObject.renderer.enabled = false;
 		}
 		else
 		{
-			this.renderer.enabled = true;
+			this.gameObject.renderer.enabled = true;
 		}
 
 		Vector3 position = player.transform.position;
