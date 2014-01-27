@@ -57,6 +57,10 @@ MonoBehaviour:
   life: 12
   rest: 2
   pts: 0
+  turtleName: RAPH
+  attacking: 0
+  specialAttack: 0
+  deltaX: 0
   yPos: 0
   jumpPos: 0
 --- !u!212 &21200000

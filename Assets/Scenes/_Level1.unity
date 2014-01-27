@@ -798,6 +798,7 @@ GameObject:
   - 4: {fileID: 362558081}
   - 212: {fileID: 362558080}
   - 95: {fileID: 362558079}
+  - 114: {fileID: 362558083}
   - 61: {fileID: 362558082}
   m_Layer: 0
   m_Name: DoorA_3
@@ -816,7 +817,7 @@ Animator:
   m_GameObject: {fileID: 362558078}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e674e8245462342489f907d078d7eda6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 44fa65caac45a4847bf196a16820ceee, type: 2}
   m_CullingMode: 0
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
@@ -867,6 +868,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 10, y: 185}
   m_Center: {x: 10, y: -20.5}
+--- !u!114 &362558083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: e0d9f7049e68fba49b4fdfba5681e82c,
+    type: 2}
+  m_PrefabInternal: {fileID: 758710604}
+  m_GameObject: {fileID: 362558078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9d96e3702351d4ca49c444fa9f9f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &367089977
 Prefab:
   m_ObjectHideFlags: 0
@@ -1053,6 +1066,10 @@ Prefab:
       propertyPath: m_Name
       value: DoorA_2
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: e0d9f7049e68fba49b4fdfba5681e82c, type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 75e56f3e597e06142919845d1e5dda35, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0d9f7049e68fba49b4fdfba5681e82c, type: 2}
   m_RootGameObject: {fileID: 1586946046}
@@ -1204,6 +1221,10 @@ Prefab:
       propertyPath: m_Name
       value: DoorA_4
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: e0d9f7049e68fba49b4fdfba5681e82c, type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 751cc2cda4a67c0409af085a9dd8aecb, type: 2}
     m_RemovedComponents:
     - {fileID: 6100000, guid: e0d9f7049e68fba49b4fdfba5681e82c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0d9f7049e68fba49b4fdfba5681e82c, type: 2}
@@ -1516,6 +1537,10 @@ Prefab:
       propertyPath: m_Name
       value: DoorA_3
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: e0d9f7049e68fba49b4fdfba5681e82c, type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 44fa65caac45a4847bf196a16820ceee, type: 2}
     m_RemovedComponents:
     - {fileID: 6100000, guid: e0d9f7049e68fba49b4fdfba5681e82c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0d9f7049e68fba49b4fdfba5681e82c, type: 2}
@@ -2378,6 +2403,10 @@ Prefab:
       propertyPath: m_Name
       value: DoorB_2
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 65fe7a13db576404d8672ca9d7b3749a, type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9dcb04d82b7bbfa468357e344b714ebf, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65fe7a13db576404d8672ca9d7b3749a, type: 2}
   m_RootGameObject: {fileID: 1997900764}
@@ -2937,6 +2966,7 @@ GameObject:
   - 4: {fileID: 1344595258}
   - 212: {fileID: 1344595257}
   - 95: {fileID: 1344595256}
+  - 114: {fileID: 1344595260}
   - 61: {fileID: 1344595259}
   m_Layer: 0
   m_Name: DoorA_4
@@ -2955,7 +2985,7 @@ Animator:
   m_GameObject: {fileID: 1344595255}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e674e8245462342489f907d078d7eda6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 751cc2cda4a67c0409af085a9dd8aecb, type: 2}
   m_CullingMode: 0
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
@@ -3006,6 +3036,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_Size: {x: 10, y: 185}
   m_Center: {x: 10, y: -20.5}
+--- !u!114 &1344595260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: e0d9f7049e68fba49b4fdfba5681e82c,
+    type: 2}
+  m_PrefabInternal: {fileID: 601451185}
+  m_GameObject: {fileID: 1344595255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9d96e3702351d4ca49c444fa9f9f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1347077558
 GameObject:
   m_ObjectHideFlags: 0
@@ -3455,6 +3497,7 @@ GameObject:
   - 212: {fileID: 1586946048}
   - 61: {fileID: 1586946050}
   - 95: {fileID: 1586946047}
+  - 114: {fileID: 1586946051}
   m_Layer: 0
   m_Name: DoorA_2
   m_TagString: Untagged
@@ -3472,7 +3515,7 @@ Animator:
   m_GameObject: {fileID: 1586946046}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e674e8245462342489f907d078d7eda6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 75e56f3e597e06142919845d1e5dda35, type: 2}
   m_CullingMode: 0
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
@@ -3524,6 +3567,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_Size: {x: 10, y: 185}
   m_Center: {x: 10, y: -20.5}
+--- !u!114 &1586946051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: e0d9f7049e68fba49b4fdfba5681e82c,
+    type: 2}
+  m_PrefabInternal: {fileID: 456793957}
+  m_GameObject: {fileID: 1586946046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9d96e3702351d4ca49c444fa9f9f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1613141155
 GameObject:
   m_ObjectHideFlags: 0
@@ -4528,6 +4583,7 @@ GameObject:
   - 212: {fileID: 1887990437}
   - 61: {fileID: 1887990439}
   - 95: {fileID: 1887990436}
+  - 114: {fileID: 1887990440}
   m_Layer: 0
   m_Name: DoorA_1
   m_TagString: Untagged
@@ -4597,6 +4653,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_Size: {x: 10, y: 185}
   m_Center: {x: 10, y: -20.5}
+--- !u!114 &1887990440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: e0d9f7049e68fba49b4fdfba5681e82c,
+    type: 2}
+  m_PrefabInternal: {fileID: 104717910}
+  m_GameObject: {fileID: 1887990435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9d96e3702351d4ca49c444fa9f9f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1891824099
 GameObject:
   m_ObjectHideFlags: 0
@@ -4741,6 +4809,7 @@ GameObject:
   - 4: {fileID: 1914184238}
   - 212: {fileID: 1914184237}
   - 95: {fileID: 1914184236}
+  - 114: {fileID: 1914184239}
   m_Layer: 0
   m_Name: DoorB_1
   m_TagString: Untagged
@@ -4798,6 +4867,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1914184239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1914184235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e9cb47b6c1b0e48b98163bb9ea564a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1919997148
 Prefab:
   m_ObjectHideFlags: 0
@@ -4928,6 +5008,7 @@ GameObject:
   - 4: {fileID: 1997900767}
   - 212: {fileID: 1997900766}
   - 95: {fileID: 1997900765}
+  - 114: {fileID: 1997900768}
   m_Layer: 0
   m_Name: DoorB_2
   m_TagString: Untagged
@@ -4945,7 +5026,7 @@ Animator:
   m_GameObject: {fileID: 1997900764}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ae10f9d5e4e6f1946b43ff039a3f0fef, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9dcb04d82b7bbfa468357e344b714ebf, type: 2}
   m_CullingMode: 0
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
@@ -4985,6 +5066,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1997900768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1997900764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e9cb47b6c1b0e48b98163bb9ea564a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2022989770
 Prefab:
   m_ObjectHideFlags: 0
