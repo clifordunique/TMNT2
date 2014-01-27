@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShadowScript : MonoBehaviour {
+public class TurtleShadowScript : MonoBehaviour {
 	private SpriteRenderer renderer;
 
 	void Start() 
@@ -24,7 +24,7 @@ public class ShadowScript : MonoBehaviour {
 		}
 
 		Vector3 position = player.transform.position;
-		position.y = position.z;
+		position.y = playerScript.yPos;
 		this.transform.position = position;
 	}
 }
