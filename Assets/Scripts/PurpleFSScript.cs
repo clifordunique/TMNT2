@@ -8,6 +8,7 @@ public class PurpleFSScript : MonoBehaviour {
 	private static float bodylength = 22;
 	//Probably should fix that to be updated if it changes
 	private float jumpdist = bodylength*3f;
+	private float punchdist = 34;
 	
 	
 	public float deltaX = 0;
@@ -112,12 +113,12 @@ public class PurpleFSScript : MonoBehaviour {
 		float x = transform.position.x;
 		float playery = playerScript.yPos;
 		float xdist = Mathf.Abs(playerx-x);
-		if(playerx > (x + bodylength))
+		if(playerx > (x + punchdist))
 		{
 			deltaX += .8f;
 		}
 		
-		if(player.transform.position.x < (x - bodylength))
+		if(player.transform.position.x < (x - punchdist))
 		{
 			deltaX += -.8f;
 		}
@@ -132,7 +133,7 @@ public class PurpleFSScript : MonoBehaviour {
 			deltaY += -.7f;
 		}
 		
-		if(playery == yPos && (xdist < jumpdist) && (xdist > bodylength + .8f) && jumpPos == 0)
+		if(playery == yPos && (xdist < jumpdist) && (xdist > punchdist + .8f) && jumpPos == 0)
 		{
 			float jumpchance = Random.value;
 			if(jumpchance <= .01f)
