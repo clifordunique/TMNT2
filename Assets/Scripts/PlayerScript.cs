@@ -8,7 +8,7 @@ public class PlayerScript : MonoBehaviour {
 	public int pts = 0;
 	public string turtleName = "RAPH";
 
-	private bool attacking = false;
+	public bool attacking = false;
 
 	public float deltaX = 0;
 	private float deltaY = 0;

@@ -3,12 +3,13 @@ using System.Collections;
 
 public class PurpleFSScript : MonoBehaviour {
 	public int life = 2;
+	GameObject player = GameObject.Find("Player");
 	
-	private bool attacking = false;
+	public bool attacking = false;
 	private static float bodylength = 22;
 	//Probably should fix that to be updated if it changes
 	private float jumpdist = bodylength*3f;
-
+	
 	
 	public float deltaX = 0;
 	private float deltaY = 0;
@@ -19,11 +20,12 @@ public class PurpleFSScript : MonoBehaviour {
 	public float jumpPos = 0;
 	private float jumpVelocity = 0;
 	private float jumpAccel = -10f;
-
-	private float jumpKickVelocity = 0;
+	
+	public float jumpKickVelocity = 0;
 	
 	private Animator animator;
-
+	public int hitCooldown = 0;
+	
 	// Use this for initialization
 	void Start () {
 		animator = this.GetComponent<Animator>();
@@ -106,7 +108,6 @@ public class PurpleFSScript : MonoBehaviour {
 	void PurpleFSInput()
 	{
 		//Didnt use getaxis because it has acceleration
-		GameObject player = GameObject.Find("Player");
 		PlayerScript playerScript = player.GetComponent<PlayerScript>();
 		float playerx = player.transform.position.x;
 		float x = transform.position.x;
@@ -132,13 +133,25 @@ public class PurpleFSScript : MonoBehaviour {
 			deltaY += -.7f;
 		}
 		
-		if(playery == yPos && (xdist < jumpdist) && (xdist > bodylength) && jumpPos == 0)
+		if(playery == yPos && (xdist < jumpdist) && (xdist > bodylength + .8f) && jumpPos == 0)
 		{
-			jumpVelocity = 5.7f;
-			deltaJump += jumpVelocity;
-			//attacking = true;
-			jumpKickVelocity = 3f;
-			jumpKickVelocity *= Mathf.Sign(playerx-x);
+			float jumpchance = Random.value;
+			if(jumpchance <= .01f)
+			{
+				jumpVelocity = 5.7f;
+				deltaJump += jumpVelocity;
+				//attacking = true;
+				jumpKickVelocity = 3f;
+				//jumpKickVelocity *= Mathf.Sign(playerx-x);
+				if(deltaX != 0)
+				{
+					jumpKickVelocity *= Mathf.Sign(deltaX);
+				}
+				else
+				{
+					jumpKickVelocity *= transform.localScale.x;
+				}
+			}
 		}
 		
 		/*if(Input.GetKeyDown(KeyCode.D))
@@ -160,5 +173,17 @@ public class PurpleFSScript : MonoBehaviour {
 				}
 			}
 		}*/
+	}
+	void OnTriggerEnter(Collider other){
+		if (other.gameObject == player){
+			PlayerScript playerScript = player.GetComponent<PlayerScript>();
+			if (playerScript.attacking == true)
+			{
+				OnHit();
+			}	
+		}
+	}
+	void OnHit(){
+		hitCooldown = 20;
 	}
 }
