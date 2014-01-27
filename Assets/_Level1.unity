@@ -3609,13 +3609,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1659512059}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e11e061cd97684cb99d0718ae21cb8bc, type: 3}
+  m_Script: {fileID: 11500000, guid: 6635670c69fa74eb9865fd8a9ff62319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   life: 2
+  attacking: 0
   deltaX: 0
   yPos: 0
   jumpPos: 0
+  jumpKickVelocity: 0
+  hitCooldown: 0
 --- !u!1 &1676885858
 GameObject:
   m_ObjectHideFlags: 0
@@ -3932,6 +3935,7 @@ MonoBehaviour:
   rest: 2
   pts: 0
   turtleName: RAPH
+  attacking: 0
   deltaX: 0
   yPos: 0
   jumpPos: 0

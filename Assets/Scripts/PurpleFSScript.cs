@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PurpleFSScript : MonoBehaviour {
 	public int life = 2;
-	GameObject player = GameObject.Find("Player");
 	
 	public bool attacking = false;
 	private static float bodylength = 22;
@@ -23,12 +22,12 @@ public class PurpleFSScript : MonoBehaviour {
 	
 	public float jumpKickVelocity = 0;
 	
-	private Animator animator;
+	//private Animator animator;
 	public int hitCooldown = 0;
 	
 	// Use this for initialization
 	void Start () {
-		animator = this.GetComponent<Animator>();
+		//animator = this.GetComponent<Animator>();
 		yPos = transform.position.y;
 		//Entrance animation if applicable?
 	}
@@ -107,7 +106,7 @@ public class PurpleFSScript : MonoBehaviour {
 	}
 	void PurpleFSInput()
 	{
-		//Didnt use getaxis because it has acceleration
+		GameObject player = GameObject.Find("Player");
 		PlayerScript playerScript = player.GetComponent<PlayerScript>();
 		float playerx = player.transform.position.x;
 		float x = transform.position.x;
@@ -175,6 +174,7 @@ public class PurpleFSScript : MonoBehaviour {
 		}*/
 	}
 	void OnTriggerEnter(Collider other){
+		GameObject player = GameObject.Find("Player");
 		if (other.gameObject == player){
 			PlayerScript playerScript = player.GetComponent<PlayerScript>();
 			if (playerScript.attacking == true)
@@ -185,5 +185,5 @@ public class PurpleFSScript : MonoBehaviour {
 	}
 	void OnHit(){
 		hitCooldown = 20;
-	}
+	}	
 }
