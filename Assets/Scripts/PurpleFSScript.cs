@@ -89,19 +89,6 @@ public class PurpleFSScript : MonoBehaviour {
 		
 		float x = transform.position.x + deltaX + jumpKickVelocity;
 		
-		float dist = (transform.position - Camera.main.transform.position).z;
-		float leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(.0625f,0,dist)).x;
-		float rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(.9125f,0,dist)).x;
-		
-		if(x < leftBorder)
-		{
-			x = leftBorder;
-		}
-		else if(x > rightBorder)
-		{
-			x = rightBorder;
-		}
-		
 		transform.position = new Vector3(x, y, z);
 	}
 	void PurpleFSInput()
