@@ -1177,6 +1177,30 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: f7cd7f94186b2014bb0ad0680be1474f, type: 2}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1.11304343
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: f7cd7f94186b2014bb0ad0680be1474f, type: 2}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: f7cd7f94186b2014bb0ad0680be1474f, type: 2}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: f7cd7f94186b2014bb0ad0680be1474f, type: 2}
+      propertyPath: orthographic size
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: f7cd7f94186b2014bb0ad0680be1474f, type: 2}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: f7cd7f94186b2014bb0ad0680be1474f, type: 2}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f7cd7f94186b2014bb0ad0680be1474f, type: 2}
   m_RootGameObject: {fileID: 1338126566}
@@ -2928,7 +2952,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: .839999974
+    width: 1.11304343
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
