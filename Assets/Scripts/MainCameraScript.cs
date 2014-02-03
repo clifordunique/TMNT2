@@ -32,6 +32,10 @@ public class MainCameraScript : MonoBehaviour {
 			{
 				stopMovement = false;
 			}
+			else
+			{
+				stopMovement = true;
+			}
 		}
 		
 		if(!stopMovement)
