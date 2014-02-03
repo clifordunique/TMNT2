@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PurpleFSScript : MonoBehaviour {
 	public int life = 2;
+	public int gothit = 0;
 	
 	public bool attacking = false;
 	private static float bodylength = 22;
@@ -22,6 +23,9 @@ public class PurpleFSScript : MonoBehaviour {
 	private float jumpAccel = -10f;
 	
 	public float jumpKickVelocity = 0;
+
+	private BoxCollider2D attackCollider;
+	private BoxCollider2D PattCol;
 	
 	//private Animator animator;
 	public int hitCooldown = 0;
@@ -31,11 +35,13 @@ public class PurpleFSScript : MonoBehaviour {
 		//animator = this.GetComponent<Animator>();
 		yPos = transform.position.y;
 		//Entrance animation if applicable?
+		attackCollider = GameObject.Find("PFSAttColl").GetComponent<BoxCollider2D>();
+		PattCol = GameObject.Find("PlayerAttackCollider").GetComponent<BoxCollider2D>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(attacking)
+		if(attacking && hitCooldown == 0)
 		{
 			if(jumpPos == 0)
 			{
@@ -47,12 +53,15 @@ public class PurpleFSScript : MonoBehaviour {
 		deltaY = 0;
 		deltaJump = 0;
 		
-		if(!attacking)
+		if(!attacking && hitCooldown == 0)
 		{
 			PurpleFSInput();
 		}
 		
 		PurpleFSMovement();
+		if(hitCooldown > 0){
+			hitCooldown--;
+		}
 		
 		//PurpleFSAnimations();
 	}
@@ -174,17 +183,23 @@ public class PurpleFSScript : MonoBehaviour {
 			}
 		}*/
 	}
-	void OnTriggerEnter(Collider other){
-		GameObject player = GameObject.Find("Player");
-		if (other.gameObject == player){
-			PlayerScript playerScript = player.GetComponent<PlayerScript>();
-			if (playerScript.attacking == true)
-			{
-				OnHit();
-			}	
+	void OnTriggerEnter2D(Collider2D other){
+		gothit = 1;
+		if(other == PattCol){
+			OnHit();
 		}
+
 	}
 	void OnHit(){
-		hitCooldown = 20;
-	}	
+		if (life > 1){
+			hitCooldown = 100;
+			life--;
+		} else{
+			die();
+		}
+	}
+	void die(){
+		//Placeholder
+		Destroy(this.gameObject);
+	}
 }
