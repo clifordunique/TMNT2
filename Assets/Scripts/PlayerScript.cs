@@ -24,29 +24,43 @@ public class PlayerScript : MonoBehaviour {
 	private float jumpKickVelocity = 0;
 
 	private Animator animator;
+	private BoxCollider2D attackCollider;
 	private LevelDataScript levelData;
 
 	void Start() 
 	{
 		levelData = GameObject.Find("LevelData").GetComponent<LevelDataScript>();
+		attackCollider = GameObject.Find("PlayerAttackCollider").GetComponent<BoxCollider2D>();
 		animator = this.GetComponent<Animator>();
 		yPos = transform.position.y;
 	}
 
 	void Update() 
 	{
+		//IF GET HIT
+		//	FLINCH
+		//	INVINCIBILITY
+
+
+
+
+
+
 		if(attacking)
 		{
 			if(jumpPos <= 1 && animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelJumpKick"))
 			{
+				attackCollider.enabled = false;
 				attacking = false;
 			}
 			else if(animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelAttack2End"))
 			{
+				attackCollider.enabled = false;
 				attacking = false;
 			}
 			else if(jumpPos <= 1 && animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelSpecialAttackEnd"))
 			{
+				attackCollider.enabled = false;
 				specialAttack = false;
 				attacking = false;
 			}
@@ -99,6 +113,7 @@ public class PlayerScript : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.D))
 		{
 			attacking = true;
+			attackCollider.enabled = true;
 
 			if(jumpVelocity < 3.6f)
 			{
@@ -121,6 +136,7 @@ public class PlayerScript : MonoBehaviour {
 			}
 			else if(jumpPos != 0)
 			{
+				attackCollider.enabled = false;
 				attacking = false;
 			}
 		}

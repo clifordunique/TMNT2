@@ -4,6 +4,8 @@ using System.Collections;
 public class MainCameraScript : MonoBehaviour {
 	public bool stopMovement = false;
 
+	public int enemiesAlive = 0;
+
 	private LevelDataScript levelData;
 	private GameObject player;
 
@@ -15,9 +17,21 @@ public class MainCameraScript : MonoBehaviour {
 
 	void Update()
 	{
-		if(this.transform.position.x > levelData.levelLength - (256 / 2))
+
+		if(enemiesAlive > 0)
 		{
-			stopMovement = true;
+			if(this.transform.position.x > levelData.cameraStopArray[levelData.cameraStopIndex] - 128)
+			{
+				stopMovement = true;
+				levelData.cameraStopIndex += 1;
+			}
+		}
+		else
+		{
+			if(this.transform.position.x < levelData.levelLength - 128)
+			{
+				stopMovement = false;
+			}
 		}
 		
 		if(!stopMovement)
