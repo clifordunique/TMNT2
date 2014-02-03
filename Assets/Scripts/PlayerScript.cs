@@ -104,13 +104,13 @@ public class PlayerScript : MonoBehaviour {
 			deltaY += -.7f;
 		}
 
-		if(Input.GetKeyDown(KeyCode.F) && jumpPos == 0)
+		if(Input.GetKeyDown(KeyCode.X) && jumpPos == 0)
 		{
 			jumpVelocity = 5.7f;
 			deltaJump += jumpVelocity;
 		}
 
-		if(Input.GetKeyDown(KeyCode.D))
+		if(Input.GetKeyDown(KeyCode.Z))
 		{
 			attacking = true;
 			attackCollider.enabled = true;
