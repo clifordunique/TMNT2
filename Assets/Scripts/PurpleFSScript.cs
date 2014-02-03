@@ -26,6 +26,11 @@ public class PurpleFSScript : MonoBehaviour {
 
 	private BoxCollider2D attackCollider;
 	private BoxCollider2D PattCol;
+
+	private int entering = 5;
+
+	//1 from left, 2 right, 3 door
+	public int source;
 	
 	//private Animator animator;
 	public int hitCooldown = 0;
@@ -124,25 +129,25 @@ public class PurpleFSScript : MonoBehaviour {
 		float xdist = Mathf.Abs(playerx-x);
 		if(playerx > (x + punchdist))
 		{
-			deltaX += .8f;
+			deltaX += .7f;
 		}
 		
 		if(player.transform.position.x < (x - punchdist))
 		{
-			deltaX += -.8f;
+			deltaX += -.7f;
 		}
 		
 		if(playery > yPos)
 		{
-			deltaY += .7f;
+			deltaY += .6f;
 		}
 		
 		if(playery < yPos)
 		{
-			deltaY += -.7f;
+			deltaY += -.6f;
 		}
 		
-		if(playery == yPos && (xdist < jumpdist) && (xdist > punchdist + .8f) && jumpPos == 0)
+		if(playery == yPos && (xdist < jumpdist) && (xdist > punchdist + .7f) && jumpPos == 0)
 		{
 			float jumpchance = Random.value;
 			if(jumpchance <= .01f)
