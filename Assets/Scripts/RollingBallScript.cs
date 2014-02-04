@@ -17,14 +17,18 @@ public class RollingBallScript : MonoBehaviour {
 
 	void Start() 
 	{
-		ballShadow = GameObject.Find("RollingBallShadow");
+		ballShadow = transform.Find("RollingBallShadow").gameObject;
 		yPos = transform.position.y;
+	}
+
+	public void setValues(float delx, float dely)
+	{
+		deltaX = delx;
+		deltaY = dely;
 	}
 
 	void Update() 
 	{
-		deltaX = .1f;
-		deltaY = -1.1f;
 		deltaJump = 0;
 
 		if(jumpPos >= 0)
@@ -57,8 +61,11 @@ public class RollingBallScript : MonoBehaviour {
 
 		transform.position = new Vector3(x, y, z);
 
-		Vector3 position = ballShadow.transform.position;
-		position.y = z - 3;
-		ballShadow.transform.position = position;
+		if(ballShadow)
+		{
+			Vector3 position = ballShadow.transform.position;
+			position.y = z - 3;
+			ballShadow.transform.position = position;
+		}
 	}
 }

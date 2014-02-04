@@ -260,13 +260,13 @@ public class PlayerScript : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collide)
 	{
 		//Objects are not in the same relative z position
-		if(collide.gameObject.transform.position.z >= gameObject.transform.position.z + 5
-		   || collide.gameObject.transform.position.z <= gameObject.transform.position.z - 5)
+		if(collide.gameObject.transform.position.z >= gameObject.transform.position.z + 4
+		   || collide.gameObject.transform.position.z <= gameObject.transform.position.z - 4)
 		{
 			return;
 		}
 
-		if(collide.gameObject.name == "RollingBall")
+		if(collide.gameObject.name == "RollingBall(Clone)")
 		{
 			life -= 8;
 			hit = true;

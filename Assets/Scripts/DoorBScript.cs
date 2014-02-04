@@ -2,28 +2,28 @@
 using System.Collections;
 
 public class DoorBScript : MonoBehaviour {
-	Animator animator;
+	private Animator animator;
+	private GameObject camera;
 	
-	// Use this for initialization
+	private bool check = false;
+	
 	void Start() 
 	{
+		camera = GameObject.Find("Main Camera");
 		animator = this.GetComponent<Animator>();
 	}
-	
-	// Update is called once per frame
+
 	void Update() 
 	{
+		if(camera.transform.position.x + 25 > 1530 && !check)
+		{
+			animator.Play("DoorBAnimation");
+			check = true;
+		}
+
 		if(animator.GetCurrentAnimatorStateInfo(0).IsName("DoorBEnd"))
 		{
 			Destroy(this.gameObject);
-		}
-	}
-	
-	void OnTriggerEnter2D(Collider2D coll)
-	{
-		if(coll.gameObject.name == "Player")
-		{
-			animator.Play("DoorBAnimation");
 		}
 	}
 }
