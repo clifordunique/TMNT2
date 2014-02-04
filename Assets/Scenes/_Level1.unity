@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 100002, guid: eaf03b525d61d11498b926c2b0f29927, type: 2}
-  camera: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!4 &122985674
 Transform:
   m_ObjectHideFlags: 0
@@ -2230,6 +2230,44 @@ Prefab:
   m_RootGameObject: {fileID: 1808833706}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1069647250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1069647251}
+  - 61: {fileID: 1069647252}
+  m_Layer: 0
+  m_Name: Screen1spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1069647251
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1069647250}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 320, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!61 &1069647252
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1069647250}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Size: {x: 1, y: 200}
+  m_Center: {x: 0, y: 100}
 --- !u!1 &1077545636
 GameObject:
   m_ObjectHideFlags: 0
@@ -5303,7 +5341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 100002, guid: eaf03b525d61d11498b926c2b0f29927, type: 2}
-  camera: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!4 &2038574176
 Transform:
   m_ObjectHideFlags: 0

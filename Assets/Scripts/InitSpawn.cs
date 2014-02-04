@@ -11,10 +11,15 @@ public class InitSpawn : MonoBehaviour {
 		pfsscript = pfs1.GetComponent<PurpleFSScript>();
 		pfsscript.source = 1;
 		pfsscript.attacker = true;
+		MainCameraScript cams = GameObject.Find("Main Camera").GetComponent<MainCameraScript>();
+		cams.enemiesAlive += 1;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+	}
+	void FSdied(){
+
 	}
 }
