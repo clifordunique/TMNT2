@@ -5,7 +5,7 @@ public class RollingBallSpawner : MonoBehaviour {
 
 	public GameObject ballPrefab;
 
-	public GameObject camera;
+	public GameObject cam;
 
 	private bool spawnBalls = false;
 
@@ -14,17 +14,17 @@ public class RollingBallSpawner : MonoBehaviour {
 
 	void Start()
 	{
-		camera = GameObject.Find("Main Camera");
+		cam = GameObject.Find("Main Camera");
 	}
 
 	void Update()
 	{
-		if(camera.transform.position.x + 25 > transform.position.x - 20 && !spawnBalls)
+		if(cam.transform.position.x + 25 > transform.position.x - 20 && !spawnBalls)
 		{
 			spawnBalls = true;
 		}
 
-		if(camera.transform.position.x > transform.position.x + 256)
+		if(cam.transform.position.x > transform.position.x + 256)
 		{
 			Destroy(this.gameObject);
 		}
