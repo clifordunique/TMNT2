@@ -89,33 +89,22 @@ public class PurpleFSScript : MonoBehaviour {
 		//Using Z axis for Isometric effect
 		float z = yPos + deltaY;
 		
-		if(z > 105)
+		if(z > 105f)
 		{
-			z = 105;
+			z = 105f;
 		}
-		else if(z < 15)
+		else if(z < 15f)
 		{
-			z = 15;
+			z = 15f;
 		}
-		
+		z = Mathf.Round(z*10f)/10f;
 		yPos = z;
 		
 		float y = z + jumpPos + deltaJump;
 		
 		float x = transform.position.x + deltaX + jumpKickVelocity;
-		
-		float dist = (transform.position - Camera.main.transform.position).z;
-		float leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(.0625f,0,dist)).x;
-		float rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(.9125f,0,dist)).x;
-		
-		if(x < leftBorder)
-		{
-			x = leftBorder;
-		}
-		else if(x > rightBorder)
-		{
-			x = rightBorder;
-		}
+		//y = Mathf.Round(y*10f)/10f;
+		x = Mathf.Round(x*10f)/10f;
 		
 		transform.position = new Vector3(x, y, z);
 	}
@@ -132,22 +121,22 @@ public class PurpleFSScript : MonoBehaviour {
 			deltaX += .7f;
 		}
 		
-		if(player.transform.position.x < (x - punchdist))
+		if(playerx < (x - punchdist))
 		{
 			deltaX += -.7f;
 		}
 		
-		if(playery > yPos)
+		if(playery > yPos+5)
 		{
 			deltaY += .6f;
 		}
 		
-		if(playery < yPos)
+		if(playery < yPos - 5)
 		{
 			deltaY += -.6f;
 		}
 		
-		if(playery == yPos && (xdist < jumpdist) && (xdist > punchdist + .7f) && jumpPos == 0)
+		if((xdist < jumpdist) && (xdist > punchdist + .7f) && jumpPos == 0)
 		{
 			float jumpchance = Random.value;
 			if(jumpchance <= .01f)
