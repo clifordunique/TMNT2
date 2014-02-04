@@ -10,6 +10,10 @@ public class PurpleFSScript : MonoBehaviour {
 	//Probably should fix that to be updated if it changes
 	private float jumpdist = bodylength*3f;
 	private float punchdist = 34;
+	public bool attacker = false;
+	private float rdir = 0;
+	private float rtime = 0;
+
 	
 	
 	public float deltaX = 0;
@@ -46,6 +50,13 @@ public class PurpleFSScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		GameObject player = GameObject.Find("Player");
+		PlayerScript playerScript = player.GetComponent<PlayerScript>();
+		float playerx = player.transform.position.x;
+		float x = transform.position.x;
+		float playery = playerScript.yPos;
+		float xdist = Mathf.Abs(playerx-x);
+		float ydist = Mathf.Abs(playery-yPos);
 		if(attacking && hitCooldown == 0)
 		{
 			if(jumpPos == 0)
@@ -60,7 +71,20 @@ public class PurpleFSScript : MonoBehaviour {
 		
 		if(!attacking && hitCooldown == 0)
 		{
-			PurpleFSInput();
+			if(xdist <= punchdist && ydist <= 5){
+				punch();
+			}else if(attacker){
+				PurpleFSInput(x, playerx, playery, xdist);
+			}else if(rtime == 0) {
+				wander();
+			}else{
+				if(rdir == 1){
+					deltaX += .7f;
+				}else{
+					deltaX += -.7f;
+				}
+				rtime--;
+			}
 		}
 		
 		PurpleFSMovement();
@@ -108,14 +132,8 @@ public class PurpleFSScript : MonoBehaviour {
 		
 		transform.position = new Vector3(x, y, z);
 	}
-	void PurpleFSInput()
+	void PurpleFSInput(float x, float playerx, float playery, float xdist)
 	{
-		GameObject player = GameObject.Find("Player");
-		PlayerScript playerScript = player.GetComponent<PlayerScript>();
-		float playerx = player.transform.position.x;
-		float x = transform.position.x;
-		float playery = playerScript.yPos;
-		float xdist = Mathf.Abs(playerx-x);
 		if(playerx > (x + punchdist))
 		{
 			deltaX += .7f;
@@ -177,6 +195,19 @@ public class PurpleFSScript : MonoBehaviour {
 			}
 		}*/
 	}
+	void wander(){
+		float dir = Random.value;
+
+		if (dir <= .5){
+			rdir = 1;
+			deltaX += .7f;
+			rtime = 50;
+		}else{
+			rdir = -1;
+			deltaX += -.7f;
+			rtime = 50;
+		}
+	}
 	void OnTriggerEnter2D(Collider2D other){
 		gothit = 1;
 		if(other == PattCol){
@@ -195,5 +226,8 @@ public class PurpleFSScript : MonoBehaviour {
 	void die(){
 		//Placeholder
 		Destroy(this.gameObject);
+	}
+	void punch(){
+
 	}
 }
