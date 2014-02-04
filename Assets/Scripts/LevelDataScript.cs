@@ -9,6 +9,9 @@ public class LevelDataScript : MonoBehaviour {
 	public float[] cameraStopArray;
 	public int cameraStopIndex = 0;
 
+	public float songLoopStart = 43.077f;
+	public float songLoopEnd = 80.353f;
+	
 	void Start()
 	{
 		cameraStopArray = new float[13];

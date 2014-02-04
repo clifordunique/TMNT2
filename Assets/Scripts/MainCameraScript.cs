@@ -8,15 +8,21 @@ public class MainCameraScript : MonoBehaviour {
 
 	private LevelDataScript levelData;
 	private GameObject player;
+	private AudioSource audio;
 
 	void Start()
 	{
+		audio = GetComponent<AudioSource>();
 		levelData = GameObject.Find("LevelData").GetComponent<LevelDataScript>();
 		player = GameObject.Find("Player");
 	}
 
 	void Update()
 	{
+		if(audio.time >= levelData.songLoopEnd)
+		{
+			audio.time = levelData.songLoopStart;
+		}
 
 		if(enemiesAlive > 0)
 		{

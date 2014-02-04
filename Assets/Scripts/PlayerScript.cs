@@ -3,13 +3,15 @@ using System.Collections;
 
 public class PlayerScript : MonoBehaviour {
 
-	public int life = 12;
+	public int life = 60;
 	public int rest = 2;
 	public int pts = 0;
 	public string turtleName = "RAPH";
 
 	public bool attacking = false;
 	public bool specialAttack = false;
+
+	private bool hit = false;
 
 	public float deltaX = 0;
 	private float deltaY = 0;
@@ -19,7 +21,7 @@ public class PlayerScript : MonoBehaviour {
 
 	public float jumpPos = 0;
 	private float jumpVelocity = 0;
-	private float jumpAccel = -10f;
+	private float jumpAccel = -12f;
 	
 	private float jumpKickVelocity = 0;
 
@@ -86,12 +88,12 @@ public class PlayerScript : MonoBehaviour {
 
 		if(Input.GetKey(KeyCode.RightArrow))
 		{
-			deltaX += .8f;
+			deltaX += .85f;
 		}
 
 		if(Input.GetKey(KeyCode.LeftArrow))
 		{
-			deltaX += -.8f;
+			deltaX += -.85f;
 		}
 
 		if(Input.GetKey(KeyCode.UpArrow))
@@ -106,7 +108,7 @@ public class PlayerScript : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.X) && jumpPos == 0)
 		{
-			jumpVelocity = 5.7f;
+			jumpVelocity = 6.2f;
 			deltaJump += jumpVelocity;
 		}
 
@@ -118,7 +120,7 @@ public class PlayerScript : MonoBehaviour {
 			if(jumpVelocity < 3.6f)
 			{
 				jumpKickVelocity = 3f;
-				jumpVelocity = -.8f;
+				jumpVelocity = 0;
 
 				if(deltaX != 0)
 				{
@@ -129,7 +131,7 @@ public class PlayerScript : MonoBehaviour {
 					jumpKickVelocity *= transform.localScale.x;
 				}
 			}
-			else if(jumpVelocity > 5f)
+			else if(jumpVelocity > 5.5f)
 			{
 				jumpVelocity = 3;
 				specialAttack = true;
@@ -243,7 +245,7 @@ public class PlayerScript : MonoBehaviour {
 			}
 			else
 			{
-				if(jumpVelocity < 3.6f)
+				if(jumpVelocity < 4f)
 				{
 					animator.Play("RaphaelJumpSpin");
 				}
@@ -253,6 +255,34 @@ public class PlayerScript : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	void OnTriggerEnter2D(Collider2D collide)
+	{
+		//Objects are not in the same relative z position
+		if(collide.gameObject.transform.position.z >= gameObject.transform.position.z + 5
+		   || collide.gameObject.transform.position.z <= gameObject.transform.position.z - 5)
+		{
+			return;
+		}
+
+		if(collide.gameObject.name == "RollingBall")
+		{
+			life -= 8;
+			hit = true;
+		}
+
+		//All Enemy attack damages go here
+
+
+
+
+
+
+
+
+
+
 	}
 }
 

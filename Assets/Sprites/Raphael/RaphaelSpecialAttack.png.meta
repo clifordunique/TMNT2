@@ -52,8 +52,8 @@ TextureImporter:
         y: 0
         width: 52
         height: 48
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .349999994, y: 0}
     - name: RaphaelSpecialAttack_1
       rect:
         serializedVersion: 2
@@ -61,8 +61,8 @@ TextureImporter:
         y: 0
         width: 52
         height: 48
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .349999994, y: 0}
     - name: RaphaelSpecialAttack_2
       rect:
         serializedVersion: 2
@@ -70,7 +70,7 @@ TextureImporter:
         y: 0
         width: 52
         height: 48
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .349999994, y: 0}
   spritePackingTag: 
   userData: 
