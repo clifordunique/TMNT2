@@ -76,7 +76,7 @@ public class PurpleFSScript : MonoBehaviour {
 			if(xdist <= punchdist && ydist <= 5){
 				punch();
 			}else if(attacker){
-				PurpleFSInput(x, playerx, playery, xdist);
+				PurpleFSInput(x, playerx, playery, xdist, ydist);
 			}else if(rtime == 0) {
 				wander();
 			}else{
@@ -134,7 +134,7 @@ public class PurpleFSScript : MonoBehaviour {
 		
 		transform.position = new Vector3(x, y, z);
 	}
-	void PurpleFSInput(float x, float playerx, float playery, float xdist)
+	void PurpleFSInput(float x, float playerx, float playery, float xdist, float ydist)
 	{
 		if(playerx > (x + punchdist))
 		{
@@ -146,12 +146,12 @@ public class PurpleFSScript : MonoBehaviour {
 			deltaX += -.7f;
 		}
 		
-		if(playery > yPos+5)
+		if(jumpPos == 0 && ydist >= (xdist-punchdist) && playery > yPos+5)
 		{
 			deltaY += .6f;
 		}
 		
-		if(playery < yPos - 5)
+		if(jumpPos == 0 && ydist >= (xdist-punchdist) && playery < yPos - 5)
 		{
 			deltaY += -.6f;
 		}
