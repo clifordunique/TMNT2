@@ -2855,6 +2855,7 @@ MonoBehaviour:
   PurpleFS: {fileID: 100002, guid: 8c13e58a39fd94a7e8988ce289514baa, type: 2}
   pfs1: {fileID: 0}
   pfsscript: {fileID: 0}
+  cams: {fileID: 0}
 --- !u!4 &1268526012
 Transform:
   m_ObjectHideFlags: 0
@@ -2875,6 +2876,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1273139478}
   - 212: {fileID: 1273139477}
+  - 95: {fileID: 1273139479}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -2922,6 +2924,20 @@ Transform:
   - {fileID: 955786547}
   - {fileID: 400820915}
   m_Father: {fileID: 0}
+--- !u!95 &1273139479
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1273139476}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 112ec5ebadcea44519b9c04f5b7bf528, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
 --- !u!1001 &1274300542
 Prefab:
   m_ObjectHideFlags: 0

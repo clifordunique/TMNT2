@@ -28,6 +28,7 @@ GameObject:
   - 61: {fileID: 6100002}
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
+  - 95: {fileID: 9500000}
   m_Layer: 0
   m_Name: PurpleFS
   m_TagString: Untagged
@@ -95,6 +96,20 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_Size: {x: 22, y: 48}
   m_Center: {x: 0, y: 24}
+--- !u!95 &9500000
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 19d3bfec5c53442ebb1478584af0d259, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,10 +124,14 @@ MonoBehaviour:
   life: 2
   gothit: 0
   attacking: 0
+  attacker: 0
+  spawner: {fileID: 0}
+  num: 0
   deltaX: 0
   yPos: 0
   jumpPos: 0
   jumpKickVelocity: 0
+  source: 0
   hitCooldown: 0
 --- !u!212 &21200000
 SpriteRenderer:
