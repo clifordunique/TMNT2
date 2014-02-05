@@ -14,6 +14,7 @@ public class PurpleFSScript : MonoBehaviour {
 	private float rdir = 0;
 	private float rtime = 0;
 	public Component spawner;
+	public int num;
 
 	
 	
