@@ -13,6 +13,7 @@ public class PurpleFSScript : MonoBehaviour {
 	public bool attacker = false;
 	private float rdir = 0;
 	private float rtime = 0;
+	public Component spawner;
 
 	
 	
@@ -225,7 +226,8 @@ public class PurpleFSScript : MonoBehaviour {
 	}
 	void die(){
 		//Placeholder
-		Destroy(this.gameObject);
+		//Destroy(this.gameObject);
+		spawner.BroadcastMessage("FSdied", this.gameObject);
 	}
 	void punch(){
 
