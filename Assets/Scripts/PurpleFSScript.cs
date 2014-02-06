@@ -59,13 +59,8 @@ public class PurpleFSScript : MonoBehaviour {
 		float playery = playerScript.yPos;
 		float xdist = Mathf.Abs(playerx-x);
 		float ydist = Mathf.Abs(playery-yPos);
-		if(attacking && hitCooldown == 0)
-		{
-			if(jumpPos == 0)
-			{
-				attacking = false;
-			}
-		}
+		//animator.SetBool ("Walking", false);
+
 		
 		deltaX = 0;
 		deltaY = 0;
@@ -82,10 +77,20 @@ public class PurpleFSScript : MonoBehaviour {
 			}else{
 				if(rdir == 1){
 					deltaX += .7f;
+					animator.SetBool ("Walking", true);
 				}else{
 					deltaX += -.7f;
+					animator.SetBool ("Walking", true);
 				}
 				rtime--;
+			}
+		}
+		if(attacking && hitCooldown == 0)
+		{
+			if (jumpPos == 0 && animator.GetCurrentAnimatorStateInfo(0).IsName("PunchEnd")){
+				attacking = false;
+				animator.SetBool ("Attacking", false);
+				attackCollider.enabled = false;
 			}
 		}
 		
@@ -139,21 +144,25 @@ public class PurpleFSScript : MonoBehaviour {
 		if(playerx > (x + punchdist))
 		{
 			deltaX += .7f;
+			animator.SetBool ("Walking", true);
 		}
 		
 		if(playerx < (x - punchdist))
 		{
 			deltaX += -.7f;
+			animator.SetBool ("Walking", true);
 		}
 		
 		if(jumpPos == 0 && ydist >= (xdist-punchdist) && playery > yPos+5)
 		{
 			deltaY += .6f;
+			animator.SetBool ("Walking", true);
 		}
 		
 		if(jumpPos == 0 && ydist >= (xdist-punchdist) && playery < yPos - 5)
 		{
 			deltaY += -.6f;
+			animator.SetBool ("Walking", true);
 		}
 		
 		if((xdist < jumpdist) && (xdist > punchdist + .7f) && jumpPos == 0)
@@ -161,6 +170,7 @@ public class PurpleFSScript : MonoBehaviour {
 			float jumpchance = Random.value;
 			if(jumpchance <= .01f)
 			{
+				animator.SetBool ("Walking", false);
 				jumpVelocity = 5.7f;
 				deltaJump += jumpVelocity;
 				//attacking = true;
@@ -176,6 +186,11 @@ public class PurpleFSScript : MonoBehaviour {
 				}
 			}
 		}
+		if (deltaX < 0 && transform.localScale.x > 0)
+			transform.localScale = new Vector3(-1f, 1f, 1f);
+		else if (deltaX > 0 && transform.localScale.x < 0)
+			transform.localScale = new Vector3(1f, 1f, 1f);
+
 		
 		/*if(Input.GetKeyDown(KeyCode.D))
 		{
@@ -203,10 +218,12 @@ public class PurpleFSScript : MonoBehaviour {
 		if (dir <= .5){
 			rdir = 1;
 			deltaX += .7f;
+			animator.SetBool ("Walking", true);
 			rtime = 50;
 		}else{
 			rdir = -1;
 			deltaX += -.7f;
+			animator.SetBool ("Walking", true);
 			rtime = 50;
 		}
 	}
@@ -218,6 +235,7 @@ public class PurpleFSScript : MonoBehaviour {
 
 	}
 	void OnHit(){
+		animator.SetBool ("Walking", false);
 		if (life > 1){
 			hitCooldown = 100;
 			life--;
@@ -233,5 +251,7 @@ public class PurpleFSScript : MonoBehaviour {
 	void punch(){
 		attacking = true;
 		animator.SetBool ("Attacking", true);
+		animator.SetBool ("Walking", false);
+		attackCollider.enabled = true;
 	}
 }
