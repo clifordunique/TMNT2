@@ -15,6 +15,7 @@ public class PurpleFSScript : MonoBehaviour {
 	private float rtime = 0;
 	public Component spawner;
 	public int num;
+	public bool jumped = false;
 
 	
 	
@@ -31,6 +32,7 @@ public class PurpleFSScript : MonoBehaviour {
 	public float jumpKickVelocity = 0;
 
 	private BoxCollider2D attackCollider;
+	private BoxCollider2D jumpColl;
 	private BoxCollider2D PattCol;
 
 	private int entering = 5;
@@ -66,6 +68,9 @@ public class PurpleFSScript : MonoBehaviour {
 		deltaX = 0;
 		deltaY = 0;
 		deltaJump = 0;
+		/*if(jumpPos == 0){
+			animator.SetBool ("Jumping", false);
+		}*/
 		
 		if(!attacking && hitCooldown == 0)
 		{
@@ -111,12 +116,15 @@ public class PurpleFSScript : MonoBehaviour {
 		{
 			jumpVelocity += jumpAccel * Time.deltaTime;
 			deltaJump += jumpVelocity;
+			animator.SetBool ("Jumping", true);
 		}
 		
 		if(jumpPos <= 0)
 		{
 			jumpKickVelocity = 0;
 			jumpPos = 0;
+			animator.SetBool ("Jumping", false);
+			attacking = false;
 		}
 		
 		jumpPos += deltaJump;
@@ -148,25 +156,21 @@ public class PurpleFSScript : MonoBehaviour {
 		if(playerx > (x + punchdist))
 		{
 			deltaX += .7f;
-			animator.SetBool ("Walking", true);
 		}
 		
 		if(playerx < (x - punchdist))
 		{
 			deltaX += -.7f;
-			animator.SetBool ("Walking", true);
 		}
 		
 		if(jumpPos == 0 && ydist >= (xdist-punchdist) && playery > yPos+5)
 		{
 			deltaY += .6f;
-			animator.SetBool ("Walking", true);
 		}
 		
 		if(jumpPos == 0 && ydist >= (xdist-punchdist) && playery < yPos - 5)
 		{
 			deltaY += -.6f;
-			animator.SetBool ("Walking", true);
 		}
 		
 		if((xdist < jumpdist) && (xdist > punchdist + .7f) && jumpPos == 0)
@@ -188,12 +192,18 @@ public class PurpleFSScript : MonoBehaviour {
 				{
 					jumpKickVelocity *= transform.localScale.x;
 				}
+				animator.SetBool("Jumping", true);
+				jumped = true;
+				attacking = true;
 			}
 		}
 		if (deltaX < 0 && transform.localScale.x > 0)
 			transform.localScale = new Vector3(-1f, 1f, 1f);
 		else if (deltaX > 0 && transform.localScale.x < 0)
 			transform.localScale = new Vector3(1f, 1f, 1f);
+		if ((deltaX != 0 || deltaY != 0) && jumpPos == 0){
+			animator.SetBool ("Walking", true);
+		}
 
 		
 		/*if(Input.GetKeyDown(KeyCode.D))
