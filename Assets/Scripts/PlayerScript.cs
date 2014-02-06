@@ -8,10 +8,15 @@ public class PlayerScript : MonoBehaviour {
 	public int pts = 0;
 	public string turtleName = "RAPH";
 
+	private float invicibility = 0;
+
 	public bool attacking = false;
 	public bool specialAttack = false;
 
 	private bool hit = false;
+	private bool bigHit = false;
+
+	private bool respawn = false;
 
 	public float deltaX = 0;
 	private float deltaY = 0;
@@ -28,9 +33,11 @@ public class PlayerScript : MonoBehaviour {
 	private Animator animator;
 	private BoxCollider2D attackCollider;
 	private LevelDataScript levelData;
+	private GameObject cam;
 
 	void Start() 
 	{
+		cam = GameObject.Find("Main Camera");
 		levelData = GameObject.Find("LevelData").GetComponent<LevelDataScript>();
 		attackCollider = GameObject.Find("PlayerAttackCollider").GetComponent<BoxCollider2D>();
 		animator = this.GetComponent<Animator>();
@@ -39,16 +46,91 @@ public class PlayerScript : MonoBehaviour {
 
 	void Update() 
 	{
-		//IF GET HIT
-		//	FLINCH
-		//	INVINCIBILITY
+		if(life <= 0)
+		{
+			invicibility = 10;
+		}
 
+		if(animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelDeadEnd"))
+		{
+			if(rest > 0)
+			{
+				life = 60;
+				rest -= 1;
+				respawn = true;
+				invicibility = 2;
 
+				attacking = false;
+				specialAttack = false;
+				hit = false;
+				bigHit = false;
 
+				this.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+				Vector3 position = cam.transform.position;
+				position.y = 63f;
+				position.z = 63f;
+				transform.position = position;
+			}
+			else
+			{
+				Application.LoadLevel(Application.loadedLevel);
+			}
+		}
 
+		invicibility -= Time.deltaTime;
 
+		if(invicibility > 0)
+		{
+			this.gameObject.collider2D.enabled = false;
+		}
+		else
+		{
+			this.gameObject.collider2D.enabled = true;
+			respawn = false;
+		}
 
-		if(attacking)
+		if(respawn)
+		{
+			if(this.gameObject.renderer.enabled == true)
+			{
+				this.gameObject.renderer.enabled = false;
+			}
+			else
+			{
+				this.gameObject.renderer.enabled = true;
+			}
+		}
+		else
+		{
+			this.gameObject.renderer.enabled = true;
+		}
+
+		if(hit)
+		{
+			attacking = false;
+			specialAttack = false;
+			attackCollider.enabled = false;
+			invicibility = 10;
+
+			if(bigHit)
+			{
+				if(animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelBigHitEnd"))
+				{
+					invicibility = 0;
+					hit = false;
+					bigHit = false;
+				}
+			}
+			else
+			{
+				if(animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelHitEnd"))
+				{
+					invicibility = 0;
+					hit = false;
+				}
+			}
+		}
+		else if(attacking)
 		{
 			if(jumpPos <= 1 && animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelJumpKick"))
 			{
@@ -72,7 +154,7 @@ public class PlayerScript : MonoBehaviour {
 		deltaY = 0;
 		deltaJump = 0;
 
-		if(!attacking)
+		if(!attacking && !hit && life > 0)
 		{
 			playerInput();
 		}
@@ -146,7 +228,26 @@ public class PlayerScript : MonoBehaviour {
 
 	void playerMovement()
 	{
-		if(jumpPos > 0)
+		bool changed = false;
+
+		if(animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelBigHitStart"))
+		{
+			changed = true;
+			jumpVelocity = 4.6f;
+			deltaJump = jumpVelocity;
+		}
+
+		if(bigHit)
+		{
+			jumpKickVelocity = -jumpVelocity;
+
+			if(jumpKickVelocity > -.75f)
+			{
+				jumpKickVelocity = -.75f;
+			}
+		}
+
+		if(jumpPos > 0 && !changed)
 		{
 			jumpVelocity += jumpAccel * Time.deltaTime;
 			deltaJump += jumpVelocity;
@@ -196,7 +297,35 @@ public class PlayerScript : MonoBehaviour {
 
 	void playerAnimations()
 	{		
-		if(attacking)
+		if(hit)
+		{
+			if(bigHit)
+			{
+				//Flip sprite left
+				if(transform.localScale.x < 0)
+					transform.localScale = new Vector3(1f, 1f, 1f);
+
+				if(jumpPos == 0 && animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelBigHitAir"))
+				{
+					animator.Play("RaphaelBigHitGround");
+				}
+				else if(!animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelBigHitGround")
+				        && !animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelBigHitEnd")
+				        && !animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelBigHitAir"))
+				{
+					animator.Play("RaphaelBigHitStart");
+				}
+			}
+			else
+			{
+				if(!animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelHit") &&
+				   !animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelHitEnd"))
+				{
+					animator.Play("RaphaelHit");
+				}
+			}
+		}
+		else if(attacking)
 		{
 			if(jumpPos == 0)
 			{
@@ -222,6 +351,14 @@ public class PlayerScript : MonoBehaviour {
 				{
 					animator.Play("RaphaelJumpKick");
 				}
+			}
+		}
+		else if(life <= 0)
+		{
+			if(!animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelDead")
+			   && !animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelDeadEnd"))
+			{
+				animator.Play("RaphaelDead");
 			}
 		}
 		else
@@ -261,7 +398,8 @@ public class PlayerScript : MonoBehaviour {
 	{
 		//Objects are not in the same relative z position
 		if(collide.gameObject.transform.position.z >= gameObject.transform.position.z + 4
-		   || collide.gameObject.transform.position.z <= gameObject.transform.position.z - 4)
+		   || collide.gameObject.transform.position.z <= gameObject.transform.position.z - 4
+		   || hit || bigHit)
 		{
 			return;
 		}
@@ -270,9 +408,16 @@ public class PlayerScript : MonoBehaviour {
 		{
 			life -= 8;
 			hit = true;
+			bigHit = true;
+		}
+		else if(collide.gameObject.name == "PurpleFS(Clone)")
+		{
+			life -= 1;
+			hit = true;
 		}
 
 		//All Enemy attack damages go here
+		//bigHit means the character flies backwards
 
 
 
