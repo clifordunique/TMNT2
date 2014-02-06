@@ -38,12 +38,12 @@ public class PurpleFSScript : MonoBehaviour {
 	//1 from left, 2 right, 3 door
 	public int source;
 	
-	//private Animator animator;
+	private Animator animator;
 	public int hitCooldown = 0;
 	
 	// Use this for initialization
 	void Start () {
-		//animator = this.GetComponent<Animator>();
+		animator = this.GetComponent<Animator>();
 		yPos = transform.position.y;
 		//Entrance animation if applicable?
 		attackCollider = GameObject.Find("PFSAttColl").GetComponent<BoxCollider2D>();
@@ -231,6 +231,7 @@ public class PurpleFSScript : MonoBehaviour {
 		spawner.BroadcastMessage("FSdied", this.gameObject);
 	}
 	void punch(){
-
+		attacking = true;
+		animator.SetBool ("Attacking", true);
 	}
 }

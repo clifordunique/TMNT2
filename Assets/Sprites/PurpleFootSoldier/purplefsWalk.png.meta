@@ -52,8 +52,8 @@ TextureImporter:
         y: 0
         width: 22
         height: 47
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: purplefsWalk_1
       rect:
         serializedVersion: 2
@@ -61,8 +61,8 @@ TextureImporter:
         y: 0
         width: 17
         height: 48
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: purplefsWalk_2
       rect:
         serializedVersion: 2
@@ -70,7 +70,16 @@ TextureImporter:
         y: 0
         width: 21
         height: 47
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: purplefsWalk_3
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 0
+        width: 17
+        height: 48
+      alignment: 7
+      pivot: {x: .5, y: 0}
   spritePackingTag: 
   userData: 
