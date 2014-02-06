@@ -51,7 +51,7 @@ public class PlayerScript : MonoBehaviour {
 			invicibility = 10;
 		}
 
-		if(animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelDeadEnd"))
+		if(life <= 0 && animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelDeadEnd"))
 		{
 			if(rest > 0)
 			{
