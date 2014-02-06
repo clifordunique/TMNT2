@@ -97,6 +97,9 @@ public class PurpleFSScript : MonoBehaviour {
 		PurpleFSMovement();
 		if(hitCooldown > 0){
 			hitCooldown--;
+			if(hitCooldown == 0){
+				animator.SetBool ("Hit", false);
+			}
 		}
 		
 		//PurpleFSAnimations();
@@ -228,7 +231,7 @@ public class PurpleFSScript : MonoBehaviour {
 		}
 	}
 	void OnTriggerEnter2D(Collider2D other){
-		gothit = 1;
+		gothit++;
 		if(other == PattCol){
 			OnHit();
 		}
@@ -239,14 +242,15 @@ public class PurpleFSScript : MonoBehaviour {
 		if (life > 1){
 			hitCooldown = 100;
 			life--;
-		} else{
+			animator.SetBool ("Hit", true);
+		}else{
 			die();
 		}
 	}
 	void die(){
 		//Placeholder
 		//Destroy(this.gameObject);
-		spawner.BroadcastMessage("FSdied", this.gameObject);
+		spawner.BroadcastMessage("FSdied", num);
 	}
 	void punch(){
 		attacking = true;

@@ -45,8 +45,8 @@ public class S1Spawner : MonoBehaviour {
 		pfsscript.num = num;
 		cams.enemiesAlive += 1;
 	}
-	void FSdied(GameObject pfspass, int num){
-		Destroy(pfspass);
+	void FSdied(int num){
+		Destroy(pfs[num]);
 		cams.enemiesAlive -= 1;
 		pfs[num] = null;
 		if(attacker == num && cams.enemiesAlive > 0){

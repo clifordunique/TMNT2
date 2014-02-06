@@ -2239,6 +2239,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1069647251}
   - 61: {fileID: 1069647252}
+  - 95: {fileID: 1069647253}
   m_Layer: 0
   m_Name: Screen1spawn
   m_TagString: Untagged
@@ -2268,6 +2269,20 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_Size: {x: 1, y: 200}
   m_Center: {x: 0, y: 100}
+--- !u!95 &1069647253
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1069647250}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 67847f8ede362954c8a6bfd113276e64, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
 --- !u!1 &1077545636
 GameObject:
   m_ObjectHideFlags: 0
