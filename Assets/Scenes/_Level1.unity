@@ -2287,10 +2287,11 @@ MonoBehaviour:
   PCol: {fileID: 0}
   goTime: 0
   cams: {fileID: 0}
-  attacker: 0
+  atter: 1
   screenstop: 320
   right: 0
   left: 0
+  stage: 0
 --- !u!1 &1077545636
 GameObject:
   m_ObjectHideFlags: 0

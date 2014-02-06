@@ -9,17 +9,18 @@ public class S1Spawner : MonoBehaviour {
 	public Component PCol;
 	public int goTime = 0;
 	public MainCameraScript cams;
-	public int attacker;
+	public int atter = 1;
 	public float screenstop = 320f;
 	public float right;
 	public float left;
+	public int stage = 0;
 
 	// Use this for initialization
 	void Start () {
 		PattCol = GameObject.Find("PlayerAttackCollider").GetComponent<BoxCollider2D>();
 		PCol = GameObject.Find("Player").GetComponent<BoxCollider2D>();
 		cams = GameObject.Find("Main Camera").GetComponent<MainCameraScript>();
-		pfs = new GameObject[4];
+		pfs = new GameObject[5];
 		right = screenstop + 32f;
 		left = screenstop - (32f + 256f);
 	}
@@ -29,12 +30,16 @@ public class S1Spawner : MonoBehaviour {
 		if(go){
 			if(goTime == 0){
 				spawn(1, new Vector3(right, 105f, 105f), 2);
+				stage = 1;
 			}else if(goTime == 50){
 				spawn(2, new Vector3(left, 80f, 80f), 1);
+				stage = 2;
 			}else if(goTime == 100){
 				spawn (3, new Vector3(left, 40f, 40f), 1);
+				stage = 3;
 			}else if(goTime == 150){
-				spawn(1, new Vector3(right, 105f, 105f), 1);
+				spawn(4, new Vector3(right, 105f, 105f), 1);
+				stage = 4;
 				go = false;
 			}
 			goTime++;
@@ -49,9 +54,8 @@ public class S1Spawner : MonoBehaviour {
 		pfs[num] = Instantiate(PurpleFS, vec, Quaternion.identity) as GameObject;
 		PurpleFSScript pfsscript = pfs[num].GetComponent<PurpleFSScript>();
 		pfsscript.source = source;
-		if (num == 1){
+		if (num == atter){
 			pfsscript.attacker = true;
-			attacker = 1;
 		}
 		pfsscript.spawner = this;
 		pfsscript.num = num;
@@ -61,17 +65,19 @@ public class S1Spawner : MonoBehaviour {
 		Destroy(pfs[num]);
 		cams.enemiesAlive -= 1;
 		pfs[num] = null;
-		if(attacker == num && cams.enemiesAlive > 0){
+		if(atter == num && cams.enemiesAlive > 0){
 			bool going = true;
 			while(going){
 				num++;
 				if (pfs[num] != null){
 					PurpleFSScript npscript = pfs[num].GetComponent<PurpleFSScript>();
 					npscript.attacker = true;
-					attacker = num;
+					atter = num;
 					going = false;
 				}
 			}
+		}else if (stage != 4) {
+			atter = stage + 1;
 		}
 	}
 }
