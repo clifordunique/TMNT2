@@ -59,9 +59,9 @@ TextureImporter:
         serializedVersion: 2
         x: 72
         y: 6
-        width: 55
+        width: 37
         height: 48
-      alignment: 7
-      pivot: {x: .5, y: 0}
+      alignment: 9
+      pivot: {x: .330000013, y: 0}
   spritePackingTag: 
   userData: 
