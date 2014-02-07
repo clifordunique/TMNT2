@@ -444,7 +444,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: PurpleFSWalking
-  m_Speed: 1
+  m_Speed: .5
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 294602c9c433a4e76accf7249e49bbec, type: 2}
@@ -489,7 +489,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: PurpleFSPunching
-  m_Speed: 1
+  m_Speed: .5
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: d29b2a10233e7d1448ada0a32d75311f, type: 2}
@@ -562,11 +562,6 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110270337}
-      second:
-      - {fileID: 110102123}
-      - {fileID: 110102683}
-    data:
       first: {fileID: 0}
       second: []
     data:
@@ -597,6 +592,11 @@ StateMachine:
       first: {fileID: 110233757}
       second:
       - {fileID: 110190732}
+    data:
+      first: {fileID: 110270337}
+      second:
+      - {fileID: 110102123}
+      - {fileID: 110102683}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 48, y: 24, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
