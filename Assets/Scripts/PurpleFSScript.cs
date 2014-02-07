@@ -33,7 +33,7 @@ public class PurpleFSScript : MonoBehaviour {
 
 	private BoxCollider2D attackCollider;
 	private BoxCollider2D jumpColl;
-	private BoxCollider2D PattCol;
+	private PlayerScript player;
 
 	private int entering = 5;
 
@@ -50,7 +50,7 @@ public class PurpleFSScript : MonoBehaviour {
 		//Entrance animation if applicable?
 		//attackCollider = GameObject.Find("PFSAttColl").GetComponent<BoxCollider2D>();
 		attackCollider = this.transform.FindChild("PFSAttColl").GetComponent<BoxCollider2D>();
-		PattCol = GameObject.Find("PlayerAttackCollider").GetComponent<BoxCollider2D>();
+		player = GameObject.Find("Player").GetComponent<PlayerScript>();
 	}
 	
 	// Update is called once per frame
@@ -242,20 +242,38 @@ public class PurpleFSScript : MonoBehaviour {
 		}
 	}
 	void OnTriggerEnter2D(Collider2D other){
+		//Objects are not in the same relative z position
+		if(other.gameObject.transform.position.z >= gameObject.transform.position.z + 8
+		   || other.gameObject.transform.position.z <= gameObject.transform.position.z - 8)
+		{
+			return;
+		}
+
 		gothit++;
-		if(other == PattCol){
+		if(other.gameObject.name == "PlayerAttackCollider"){
 			OnHit();
 		}
 
 	}
 	void OnHit(){
 		animator.SetBool ("Walking", false);
-		if (life > 1){
-			hitCooldown = 100;
-			life--;
-			animator.SetBool ("Hit", true);
-		}else{
+		if(player.specialAttack)
+		{
+			life -= 2;
+		}
+		else
+		{
+			life -= 1;
+		}
+
+		if(life <= 0)
+		{
 			die();
+		}
+		else
+		{
+			hitCooldown = 100;
+			animator.SetBool("Hit", true);
 		}
 	}
 	void die(){

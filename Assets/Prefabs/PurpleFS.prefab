@@ -166,6 +166,7 @@ MonoBehaviour:
   attacker: 0
   spawner: {fileID: 0}
   num: 0
+  jumped: 0
   deltaX: 0
   yPos: 0
   jumpPos: 0

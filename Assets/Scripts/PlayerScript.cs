@@ -233,7 +233,7 @@ public class PlayerScript : MonoBehaviour {
 		if(animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelBigHitStart"))
 		{
 			changed = true;
-			jumpVelocity = 4.6f;
+			jumpVelocity = 5.4f;
 			deltaJump = jumpVelocity;
 		}
 
@@ -397,8 +397,8 @@ public class PlayerScript : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collide)
 	{
 		//Objects are not in the same relative z position
-		if(collide.gameObject.transform.position.z >= gameObject.transform.position.z + 4
-		   || collide.gameObject.transform.position.z <= gameObject.transform.position.z - 4
+		if(collide.gameObject.transform.position.z >= gameObject.transform.position.z + 8
+		   || collide.gameObject.transform.position.z <= gameObject.transform.position.z - 8
 		   || hit || bigHit)
 		{
 			return;
@@ -410,7 +410,8 @@ public class PlayerScript : MonoBehaviour {
 			hit = true;
 			bigHit = true;
 		}
-		else if(collide.gameObject.name == "PurpleFS(Clone)")
+		else if(collide.gameObject.name == "PFSAttColl"
+		        || collide.gameObject.name == "PFSJumpColl")
 		{
 			life -= 1;
 			hit = true;
