@@ -34,6 +34,7 @@ public class PurpleFSScript : MonoBehaviour {
 	private BoxCollider2D attackCollider;
 	private BoxCollider2D jumpColl;
 	private PlayerScript player;
+	private LevelDataScript levelData;
 
 	private int entering = 5;
 
@@ -51,6 +52,7 @@ public class PurpleFSScript : MonoBehaviour {
 		yPos = transform.position.y;
 		//Entrance animation if applicable?
 		//attackCollider = GameObject.Find("PFSAttColl").GetComponent<BoxCollider2D>();
+		levelData = GameObject.Find("LevelData").GetComponent<LevelDataScript>();
 		attackCollider = this.transform.FindChild("PFSAttColl").GetComponent<BoxCollider2D>();
 		jumpColl = this.transform.FindChild("PFSJumpColl").GetComponent<BoxCollider2D>();
 		player = GameObject.Find("Player").GetComponent<PlayerScript>();
@@ -152,13 +154,13 @@ public class PurpleFSScript : MonoBehaviour {
 		//Using Z axis for Isometric effect
 		float z = yPos + deltaY;
 		
-		if(z > 105f)
+		if(z > levelData.walkSpaceHeight)
 		{
-			z = 105f;
+			z = levelData.walkSpaceHeight;
 		}
-		else if(z < 15f)
+		else if(z < levelData.walkSpaceBottom)
 		{
-			z = 15f;
+			z = levelData.walkSpaceBottom;
 		}
 		z = Mathf.Round(z*10f)/10f;
 		yPos = z;
