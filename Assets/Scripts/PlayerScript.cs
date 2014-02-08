@@ -74,7 +74,7 @@ public class PlayerScript : MonoBehaviour {
 			}
 			else
 			{
-				Application.LoadLevel(Application.loadedLevel);
+				Application.LoadLevel("_LevelSelect");
 			}
 		}
 
@@ -281,9 +281,9 @@ public class PlayerScript : MonoBehaviour {
 		{
 			z = levelData.walkSpaceHeight;
 		}
-		else if(z < 15)
+		else if(z < levelData.walkSpaceBottom)
 		{
-			z = 15;
+			z = levelData.walkSpaceBottom;
 		}
 		
 		yPos = z;

@@ -34,7 +34,7 @@ public class MainCameraScript : MonoBehaviour {
 		}
 		else
 		{
-			if(this.transform.position.x >= levelData.levelLength - 128)
+			if(this.transform.position.x >= levelData.levelLength - 129)
 			{
 				stopMovement = true;
 			}

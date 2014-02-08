@@ -7,10 +7,14 @@ public class RollingBallSpawner : MonoBehaviour {
 
 	public GameObject cam;
 
-	private bool spawnBalls = false;
+	public bool spawnBalls = false;
 
-	private float timer1 = 0;
-	private float timer2 = .6f;
+	public float timer1 = 0;
+	public float timer2 = .6f;
+	
+	public float xRangeMin = .2f;
+	public float xRangeMax = 1.3f;
+
 
 	void Start()
 	{
@@ -38,7 +42,7 @@ public class RollingBallSpawner : MonoBehaviour {
 			if(timer1 <= 0)
 			{
 				ballClone = Instantiate(ballPrefab, this.transform.position, Quaternion.identity) as GameObject;
-				ballClone.GetComponent<RollingBallScript>().setValues(Random.Range(.2f, 1.3f), -2.4f);
+				ballClone.GetComponent<RollingBallScript>().setValues(Random.Range(xRangeMin, xRangeMax), -2.4f);
 
 				timer1 = 2.6f;
 			}
@@ -46,7 +50,7 @@ public class RollingBallSpawner : MonoBehaviour {
 			if(timer2 <= 0)
 			{
 				ballClone = Instantiate(ballPrefab, this.transform.position, Quaternion.identity) as GameObject;
-				ballClone.GetComponent<RollingBallScript>().setValues(Random.Range(.2f, 1.3f), -2.4f);
+				ballClone.GetComponent<RollingBallScript>().setValues(Random.Range(xRangeMin, xRangeMax), -2.4f);
 
 				timer2 = 3.2f;
 			}
