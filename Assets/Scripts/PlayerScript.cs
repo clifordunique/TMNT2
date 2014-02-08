@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour {
 
 	private bool hit = false;
 	private bool bigHit = false;
+	private bool hitLeft = false;
 
 	private bool respawn = false;
 
@@ -125,7 +126,7 @@ public class PlayerScript : MonoBehaviour {
 			{
 				if(animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelHitEnd"))
 				{
-					invicibility = 0;
+					invicibility = .1f;
 					hit = false;
 				}
 			}
@@ -233,17 +234,29 @@ public class PlayerScript : MonoBehaviour {
 		if(animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelBigHitStart"))
 		{
 			changed = true;
-			jumpVelocity = 5.4f;
+			jumpVelocity = 5f;
 			deltaJump = jumpVelocity;
 		}
 
 		if(bigHit)
 		{
-			jumpKickVelocity = -jumpVelocity;
-
-			if(jumpKickVelocity > -.75f)
+			if(!hitLeft)
 			{
-				jumpKickVelocity = -.75f;
+				jumpKickVelocity = -jumpVelocity;
+
+				if(jumpKickVelocity > -.75f)
+				{
+					jumpKickVelocity = -.75f;
+				}
+			}
+			else
+			{
+				jumpKickVelocity = jumpVelocity;
+				
+				if(jumpKickVelocity < .75f)
+				{
+					jumpKickVelocity = .75f;
+				}
 			}
 		}
 
@@ -286,10 +299,18 @@ public class PlayerScript : MonoBehaviour {
 		if(x < leftBorder)
 		{
 			x = leftBorder;
+			if(bigHit && jumpVelocity > 0)
+			{
+				jumpVelocity = 0;
+			}
 		}
 		else if(x > rightBorder)
 		{
 			x = rightBorder;
+			if(bigHit && jumpVelocity > 0)
+			{
+				jumpVelocity = 0;
+			}
 		}
 		
 		transform.position = new Vector3(x, y, z);
@@ -302,8 +323,10 @@ public class PlayerScript : MonoBehaviour {
 			if(bigHit)
 			{
 				//Flip sprite left
-				if(transform.localScale.x < 0)
+				if(!hitLeft)
 					transform.localScale = new Vector3(1f, 1f, 1f);
+				else
+					transform.localScale = new Vector3(-1f, 1f, 1f);
 
 				if(jumpPos == 0 && animator.GetCurrentAnimatorStateInfo(0).IsName("RaphaelBigHitAir"))
 				{
@@ -397,8 +420,8 @@ public class PlayerScript : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collide)
 	{
 		//Objects are not in the same relative z position
-		if(collide.gameObject.transform.position.z >= gameObject.transform.position.z + 8
-		   || collide.gameObject.transform.position.z <= gameObject.transform.position.z - 8
+		if(collide.gameObject.transform.position.z >= gameObject.transform.position.z + 10
+		   || collide.gameObject.transform.position.z <= gameObject.transform.position.z - 10
 		   || hit || bigHit)
 		{
 			return;
@@ -409,12 +432,26 @@ public class PlayerScript : MonoBehaviour {
 			life -= 8;
 			hit = true;
 			bigHit = true;
+			hitLeft = false;
 		}
 		else if(collide.gameObject.name == "PFSAttColl"
 		        || collide.gameObject.name == "PFSJumpColl")
 		{
 			life -= 1;
 			hit = true;
+
+			if(jumpPos != 0)
+			{
+				bigHit = true;
+				if(collide.gameObject.transform.position.x < gameObject.transform.position.x)
+				{
+					hitLeft = true;
+				}
+				else
+				{
+					hitLeft = false;
+				}
+			}
 		}
 
 		//All Enemy attack damages go here

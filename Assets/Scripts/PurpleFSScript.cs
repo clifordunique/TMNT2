@@ -41,7 +41,9 @@ public class PurpleFSScript : MonoBehaviour {
 	public int source;
 	
 	private Animator animator;
-	public int hitCooldown = 0;
+	public float hitCooldown = 0;
+	private float attackCooldown = 0;
+	private float disableCollider = 0;
 	
 	// Use this for initialization
 	void Start () {
@@ -72,10 +74,23 @@ public class PurpleFSScript : MonoBehaviour {
 		/*if(jumpPos == 0){
 			animator.SetBool ("Jumping", false);
 		}*/
-		
-		if(!attacking && hitCooldown == 0)
+
+
+		if(hitCooldown > 0)
 		{
-			if(xdist <= punchdist && ydist <= 5){
+			attacking = false;
+			attackCollider.enabled = false;
+		}
+
+		if(disableCollider <= 0)
+		{
+			attackCollider.enabled = false;
+		}
+
+		if(!attacking && hitCooldown <= 0)
+		{
+			if(xdist <= punchdist && ydist <= 5 && attackCooldown <= 0){
+				attackCooldown = .6f;
 				punch();
 			}else if(attacker){
 				PurpleFSInput(x, playerx, playery, xdist, ydist);
@@ -92,21 +107,24 @@ public class PurpleFSScript : MonoBehaviour {
 				rtime--;
 			}
 		}
-		if(attacking && hitCooldown == 0)
+		
+		if(attacking)
 		{
-			if (jumpPos == 0 && animator.GetCurrentAnimatorStateInfo(0).IsName("PunchEnd")){
+			if (animator.GetCurrentAnimatorStateInfo(0).IsName("PurpleFSPunchingEnd")){
 				attacking = false;
 				animator.SetBool ("Attacking", false);
 				attackCollider.enabled = false;
 			}
 		}
-		
+
 		PurpleFSMovement();
-		if(hitCooldown > 0){
-			hitCooldown--;
-			if(hitCooldown == 0){
-				animator.SetBool ("Hit", false);
-			}
+
+		disableCollider -= Time.deltaTime;
+		attackCooldown -= Time.deltaTime;
+		hitCooldown -= Time.deltaTime;
+
+		if(hitCooldown <= 0){
+			animator.SetBool("Hit", false);
 		}
 		
 		//PurpleFSAnimations();
@@ -123,7 +141,6 @@ public class PurpleFSScript : MonoBehaviour {
 		
 		if(jumpPos <= 0)
 		{
-			jumpKickVelocity = 0;
 			jumpPos = 0;
 			animator.SetBool ("Jumping", false);
 			jumpColl.enabled = false;
@@ -147,8 +164,17 @@ public class PurpleFSScript : MonoBehaviour {
 		yPos = z;
 		
 		float y = z + jumpPos + deltaJump;
-		
-		float x = transform.position.x + deltaX + jumpKickVelocity;
+		float x;
+
+		if(jumpPos <= 0)
+		{
+			x = transform.position.x + deltaX;
+		}
+		else
+		{
+			x = transform.position.x + deltaX + jumpKickVelocity;
+		}
+
 		//y = Mathf.Round(y*10f)/10f;
 		x = Mathf.Round(x*10f)/10f;
 		if (deltaX < 0 && transform.localScale.x > 0)
@@ -165,22 +191,22 @@ public class PurpleFSScript : MonoBehaviour {
 	{
 		if(playerx > (x + punchdist))
 		{
-			deltaX += .7f;
+			deltaX += .8f;
 		}
 		
 		if(playerx < (x - punchdist))
 		{
-			deltaX += -.7f;
+			deltaX += -.8f;
 		}
 		
 		if(jumpPos == 0 && ydist >= (xdist-punchdist) && playery > yPos+5)
 		{
-			deltaY += .6f;
+			deltaY += .65f;
 		}
 		
 		if(jumpPos == 0 && ydist >= (xdist-punchdist) && playery < yPos - 5)
 		{
-			deltaY += -.6f;
+			deltaY += -.65f;
 		}
 		
 		if((xdist < jumpdist) && (xdist > punchdist + .7f) && jumpPos == 0)
@@ -190,9 +216,9 @@ public class PurpleFSScript : MonoBehaviour {
 			{
 				animator.SetBool ("Walking", false);
 				jumpColl.enabled = true;
-				jumpVelocity = 5.7f;
+				jumpVelocity = 4f;
 				deltaJump += jumpVelocity;
-				jumpKickVelocity = 3f;
+				jumpKickVelocity = 2f;
 				//jumpKickVelocity *= Mathf.Sign(playerx-x);
 				if(deltaX != 0)
 				{
@@ -244,8 +270,8 @@ public class PurpleFSScript : MonoBehaviour {
 	}
 	void OnTriggerEnter2D(Collider2D other){
 		//Objects are not in the same relative z position
-		if(other.gameObject.transform.position.z >= gameObject.transform.position.z + 8
-		   || other.gameObject.transform.position.z <= gameObject.transform.position.z - 8)
+		if(other.gameObject.transform.position.z >= gameObject.transform.position.z + 10
+		   || other.gameObject.transform.position.z <= gameObject.transform.position.z - 10)
 		{
 			return;
 		}
@@ -257,6 +283,8 @@ public class PurpleFSScript : MonoBehaviour {
 
 	}
 	void OnHit(){
+		attacking = false;
+		attackCollider.enabled = false;
 		animator.SetBool ("Walking", false);
 		if(player.specialAttack)
 		{
@@ -273,7 +301,7 @@ public class PurpleFSScript : MonoBehaviour {
 		}
 		else
 		{
-			hitCooldown = 100;
+			hitCooldown = .4f;
 			animator.SetBool("Hit", true);
 		}
 	}
@@ -284,6 +312,7 @@ public class PurpleFSScript : MonoBehaviour {
 	}
 	void punch(){
 		attacking = true;
+		disableCollider = .1f;
 		animator.SetBool ("Attacking", true);
 		animator.SetBool ("Walking", false);
 		attackCollider.enabled = true;
