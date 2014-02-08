@@ -346,6 +346,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 100002, guid: eaf03b525d61d11498b926c2b0f29927, type: 2}
   cam: {fileID: 0}
+  spawnBalls: 0
+  timer1: 0
+  timer2: .600000024
+  xRangeMin: .200000003
+  xRangeMax: 1.29999995
 --- !u!4 &122985674
 Transform:
   m_ObjectHideFlags: 0
@@ -4341,11 +4346,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpaceHeight: 105
+  walkSpaceBottom: 15
   levelLength: 1792
   cameraStopArray: []
   cameraStopIndex: 0
   songLoopStart: 43.0769997
   songLoopEnd: 80.3529968
+  stop1: 320
+  stop2: 384
+  stop3: 577
+  stop4: 719
+  stop5: 898
+  stop6: 960
+  stop7: 1123
+  stop8: 1376
+  stop9: 1409
+  stop10: 1503
+  stop11: 1664
+  stop12: 1792
 --- !u!4 &1705683809
 Transform:
   m_ObjectHideFlags: 0
@@ -5440,6 +5458,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 100002, guid: eaf03b525d61d11498b926c2b0f29927, type: 2}
   cam: {fileID: 0}
+  spawnBalls: 0
+  timer1: 0
+  timer2: .600000024
+  xRangeMin: .200000003
+  xRangeMax: 1.29999995
 --- !u!4 &2038574176
 Transform:
   m_ObjectHideFlags: 0

@@ -81,6 +81,7 @@ public class PurpleFSScript : MonoBehaviour {
 		if(hitCooldown > 0)
 		{
 			attacking = false;
+			animator.SetBool("Attacking", false);
 			attackCollider.enabled = false;
 		}
 
@@ -92,7 +93,7 @@ public class PurpleFSScript : MonoBehaviour {
 		if(!attacking && hitCooldown <= 0)
 		{
 			if(xdist <= punchdist && ydist <= 5 && attackCooldown <= 0){
-				attackCooldown = .6f;
+				attackCooldown = 1.1f;
 				punch();
 			}else if(attacker){
 				PurpleFSInput(x, playerx, playery, xdist, ydist);
@@ -143,10 +144,13 @@ public class PurpleFSScript : MonoBehaviour {
 		
 		if(jumpPos <= 0)
 		{
+			if(jumpColl.enabled)
+			{
+				attacking = false;
+			}
 			jumpPos = 0;
 			animator.SetBool ("Jumping", false);
 			jumpColl.enabled = false;
-			attacking = false;
 		}
 		
 		jumpPos += deltaJump;
