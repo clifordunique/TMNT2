@@ -8,13 +8,13 @@ public class StarFSScript : MonoBehaviour {
 	public bool attacking = false;
 	private static float bodylength = 22;
 	//Probably should fix that to be updated if it changes
-	private float throwdist = bodylength*3f;
 	private float punchdist = 34;
 	public bool attacker = false;
 	private float rdir = 0;
 	private float rtime = 0;
 	public Component spawner;
 	public int num;
+	public float screenstop;
 	
 	
 	
@@ -148,8 +148,9 @@ public class StarFSScript : MonoBehaviour {
 			deltaY += -.6f;
 		}
 		
-		if((xdist < throwdist) && (xdist > punchdist + .7f))
+		if((ydist < 8) && (xdist > punchdist + .7f))
 		{
+			throwStar();
 //			float jumpchance = Random.value;
 //			if(jumpchance <= .01f)
 //			{
@@ -171,6 +172,7 @@ public class StarFSScript : MonoBehaviour {
 //				jumped = true;
 //				attacking = true;
 //			}
+
 		}
 	}
 	void wander(){
@@ -233,5 +235,8 @@ public class StarFSScript : MonoBehaviour {
 		animator.SetBool ("Attacking", true);
 		animator.SetBool ("Walking", false);
 		attackCollider.enabled = true;
+	}
+	void throwStar(){
+
 	}
 }

@@ -314,7 +314,7 @@ public class PurpleFSScript : MonoBehaviour {
 	void die(){
 		//Placeholder
 		//Destroy(this.gameObject);
-		spawner.BroadcastMessage("FSdied", num);
+		spawner.BroadcastMessage("PFSdied", num);
 	}
 	void punch(){
 		attacking = true;

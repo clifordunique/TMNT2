@@ -22,7 +22,7 @@ public class InitSpawn : MonoBehaviour {
 	void Update () {
 	
 	}
-	void FSdied(int num){
+	void PFSdied(int num){
 		Destroy(pfs1);
 		cams.enemiesAlive -= 1;
 		cams.points += 1;
