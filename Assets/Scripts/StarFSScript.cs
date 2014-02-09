@@ -4,6 +4,7 @@ using System.Collections;
 public class StarFSScript : MonoBehaviour {
 	public int life = 2;
 	public int gothit = 0;
+	public GameObject star;
 	
 	public bool attacking = false;
 	private static float bodylength = 22;
@@ -237,6 +238,16 @@ public class StarFSScript : MonoBehaviour {
 		attackCollider.enabled = true;
 	}
 	void throwStar(){
+		float sx = transform.position.x + 24.5;
+		float sy = yPos + 40;
+		GameObject stargen = Instantiate(star, new Vector3(sx, sy, sy), Quaternion.identity);
+		StarScript ss = stargen.GetComponent<StarScript>();
+		if(transform.position.x > player.transform.position.x){
+			ss.dir = 1;
+		}else{
+			ss.dir = -1;
+		}
+		ss.screenstop = screenstop;
 
 	}
 }
