@@ -4,6 +4,8 @@ using System.Collections;
 public class MainCameraScript : MonoBehaviour {
 	public bool stopMovement = false;
 
+	public int points = 0;
+
 	public int enemiesAlive = 0;
 
 	private LevelDataScript levelData;
@@ -59,5 +61,10 @@ public class MainCameraScript : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	void OnGUI()
+	{
+		GUI.Label(new Rect(230, 45, 100, 20), points.ToString());
 	}
 }

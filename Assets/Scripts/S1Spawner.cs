@@ -64,6 +64,7 @@ public class S1Spawner : MonoBehaviour {
 	void FSdied(int num){
 		Destroy(pfs[num]);
 		cams.enemiesAlive -= 1;
+		cams.points += 1;
 		pfs[num] = null;
 		if(atter == num && cams.enemiesAlive > 0){
 			bool going = true;

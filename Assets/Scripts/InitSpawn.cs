@@ -25,5 +25,6 @@ public class InitSpawn : MonoBehaviour {
 	void FSdied(int num){
 		Destroy(pfs1);
 		cams.enemiesAlive -= 1;
+		cams.points += 1;
 	}
 }
