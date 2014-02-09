@@ -228,7 +228,7 @@ public class StarFSScript : MonoBehaviour {
 	void die(){
 		//Placeholder
 		//Destroy(this.gameObject);
-		spawner.BroadcastMessage("FSdied", num);
+		spawner.BroadcastMessage("SFSdied", num);
 	}
 	void punch(){
 		attacking = true;
