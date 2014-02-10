@@ -298,6 +298,7 @@ public class PurpleFSScript : MonoBehaviour {
 		attacking = false;
 		attackCollider.enabled = false;
 		animator.SetBool ("Walking", false);
+		animator.SetBool ("Attacking", false);
 		if(player.specialAttack)
 		{
 			life -= 2;

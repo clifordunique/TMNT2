@@ -16,6 +16,7 @@ public class S3Spawner : MonoBehaviour {
 	public int stage = 0;
 	public Animator dooranim;
 	public GameObject pfskickA_1;
+	public bool doordone = false;
 
 	// Use this for initialization
 	void Start () {
@@ -29,7 +30,10 @@ public class S3Spawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(!go && dooranim.GetCurrentAnimatorStateInfo(0).IsName("DoorAEnd")){
+		if (dooranim != null){
+			doordone = dooranim.GetCurrentAnimatorStateInfo(0).IsName("DoorAEnd");
+		}
+		if(!go && doordone){
 			go = true;
 			Destroy(pfskickA_1);
 			spawnSFS(1, new Vector3(432f,114f,114f), 3);
