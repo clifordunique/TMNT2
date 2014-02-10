@@ -435,7 +435,11 @@ public class PlayerScript : MonoBehaviour {
 			hitLeft = false;
 		}
 		else if(collide.gameObject.name == "PFSAttColl"
-		        || collide.gameObject.name == "PFSJumpColl")
+		        || collide.gameObject.name == "PFSJumpColl"
+		        || collide.gameObject.name == "SFSAttColl"
+		        || collide.gameObject.name == "starFSstar"
+		        || collide.gameObject.name == "WFSAttColl"
+		        || collide.gameObject.name == "WFSJumpColl")
 		{
 			life -= 1;
 			hit = true;
@@ -453,19 +457,6 @@ public class PlayerScript : MonoBehaviour {
 				}
 			}
 		}
-
-		//All Enemy attack damages go here
-		//bigHit means the character flies backwards
-
-
-
-
-
-
-
-
-
-
 	}
 }
 
