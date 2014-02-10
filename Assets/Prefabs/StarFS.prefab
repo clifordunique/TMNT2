@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 2
   gothit: 0
+  star: {fileID: 100000, guid: 874f2cb9ecea77c4cb17e3c75baa3390, type: 2}
   attacking: 0
   attacker: 0
   spawner: {fileID: 0}

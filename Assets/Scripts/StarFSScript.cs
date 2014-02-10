@@ -238,11 +238,11 @@ public class StarFSScript : MonoBehaviour {
 		attackCollider.enabled = true;
 	}
 	void throwStar(){
-		float sx = transform.position.x + 24.5;
-		float sy = yPos + 40;
-		GameObject stargen = Instantiate(star, new Vector3(sx, sy, sy), Quaternion.identity);
+		float sx = transform.position.x + 24.5f;
+		float sy = yPos + 40f;
+		GameObject stargen = Instantiate(star, new Vector3(sx, sy, sy), Quaternion.identity) as GameObject;
 		StarScript ss = stargen.GetComponent<StarScript>();
-		if(transform.position.x > player.transform.position.x){
+		if(transform.position.x < player.transform.position.x){
 			ss.dir = 1;
 		}else{
 			ss.dir = -1;
