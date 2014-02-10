@@ -441,7 +441,8 @@ public class PlayerScript : MonoBehaviour {
 		        || collide.gameObject.name == "BFSAttColl"
 		        || collide.gameObject.name == "BlueFSKunai(Clone)"
 		        || collide.gameObject.name == "WFSAttColl"
-		        || collide.gameObject.name == "WFSJumpColl")
+		        || collide.gameObject.name == "WFSJumpColl"
+		        || collide.gameObject.name == "Laser(Clone)")
 		{
 			life -= 1;
 			hit = true;
