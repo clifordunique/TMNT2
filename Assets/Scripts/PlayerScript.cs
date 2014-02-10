@@ -438,6 +438,8 @@ public class PlayerScript : MonoBehaviour {
 		        || collide.gameObject.name == "PFSJumpColl"
 		        || collide.gameObject.name == "SFSAttColl"
 		        || collide.gameObject.name == "starFSstar(Clone)"
+		        || collide.gameObject.name == "BFSAttColl"
+		        || collide.gameObject.name == "BlueFSKunai(Clone)"
 		        || collide.gameObject.name == "WFSAttColl"
 		        || collide.gameObject.name == "WFSJumpColl")
 		{
