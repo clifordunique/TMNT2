@@ -16,6 +16,7 @@ public class StarFSScript : MonoBehaviour {
 	public Component spawner;
 	public int num;
 	public float screenstop;
+	public bool startedKicking = false;
 	
 	
 	
@@ -29,7 +30,7 @@ public class StarFSScript : MonoBehaviour {
 	private PlayerScript player;
 	private LevelDataScript levelData;
 	
-	private bool entering = true;
+	public bool entering = true;
 	
 	//1 from left, 2 right, 3 door
 	public int source;
@@ -64,14 +65,18 @@ public class StarFSScript : MonoBehaviour {
 		deltaX = 0;
 		deltaY = 0;
 		if(entering == true){
+			AnimatorStateInfo asi = animator.GetCurrentAnimatorStateInfo(0);
 			if(source == 3){
 				animator.Play("pfsKick");
+				startedKicking = true;
+			} else {
+				startedKicking = true;
 			}
-			if(animator.GetCurrentAnimatorStateInfo(0).IsName("PurpleStand") || animator.GetCurrentAnimatorStateInfo(0).IsName("PurpleFSWalking")){
+			if(startedKicking && (asi.IsName("PurpleStand") || asi.IsName("PurpleFSWalking"))){
 				entering = false;
 			}
 		}else{
-		
+			
 			if(hitCooldown > 0)
 			{
 				attacking = false;

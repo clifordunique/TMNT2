@@ -17,11 +17,16 @@ public class S3Spawner : MonoBehaviour {
 	public Animator dooranim;
 	public GameObject pfskickA_1;
 	public bool doordone = false;
+	public bool go2 = false;
+	public bool done1 = false;
+	public bool done2 = false;
+	public int goTime2 = 0;
+	public int numEn = 4;
 
 	// Use this for initialization
 	void Start () {
 		cams = GameObject.Find("Main Camera").GetComponent<MainCameraScript>();
-		sfs = new GameObject[5];
+		sfs = new GameObject[numEn+1];
 		right = screenstop + 32f;
 		left = screenstop - (32f + 256f);
 		dooranim = GameObject.Find("DoorA_1").GetComponent<Animator>();
@@ -50,8 +55,25 @@ public class S3Spawner : MonoBehaviour {
 				spawnSFS(4, new Vector3(right, 105f, 105f), 2);
 				stage = 4;
 				go = false;
+				done1 = true;
 			}
 			goTime++;
+		}
+		if(go2){
+			if(goTime2 == 0){
+				spawnSFS (1, new Vector3(right, 105f, 105f), 2);
+				stage = 1;
+			}else if(goTime2 == 50){
+				spawnSFS (2, new Vector3(right, 105f, 105f), 2);
+				stage = 2;
+			}else if(goTime2 == 100){
+				spawnSFS (3, new Vector3(left, 105f, 105f), 1);
+				stage = 3;
+			}else if(goTime2 == 150){
+				spawnSFS (4, new Vector3(right, 105f, 105f), 2);
+				stage = 4;
+			}
+			goTime2++;
 		}
 	}
 	void spawnPFS(int num, Vector3 vec, int source){
@@ -81,8 +103,11 @@ public class S3Spawner : MonoBehaviour {
 					going = false;
 				}
 			}
-		}else if (stage != 4) {
+		}else if (atter == num && stage != 4) {
 			atter = stage + 1;
+		}
+		if (cams.enemiesAlive == 0 && done1 == true && done2 == false) {
+			go2 = true;
 		}
 	}
 	void spawnSFS(int num, Vector3 vec, int source){
@@ -102,19 +127,32 @@ public class S3Spawner : MonoBehaviour {
 		cams.enemiesAlive -= 1;
 		cams.points += 1;
 		sfs[num] = null;
-		if(atter == num && cams.enemiesAlive > 0){
+		bool neednew = false;
+		if(atter == num){
+			neednew = true;
+		}
+		if(neednew && cams.enemiesAlive > 0){
 			bool going = true;
+			bool gone = false;
 			while(going){
 				num++;
-				if (sfs[num] != null){
-					StarFSScript nsscript = sfs[num].GetComponent<StarFSScript>();
-					nsscript.attacker = true;
-					atter = num;
-					going = false;
+				if(numEn >= num){
+					if (sfs[num] != null){
+						StarFSScript nsscript = sfs[num].GetComponent<StarFSScript>();
+						nsscript.attacker = true;
+						atter = num;
+						going = false;
+					}
+				}else{
+					gone = true;
+					num = 0;
 				}
 			}
-		}else if (stage != 4) {
+		}else if (neednew && stage != 4) {
 			atter = stage + 1;
+		}
+		if (cams.enemiesAlive == 0 && done1 == true && done2 == false) {
+			go2 = true;
 		}
 	}
 }

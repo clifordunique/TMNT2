@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class S2Spawner : MonoBehaviour {
+public class S4Spawner : MonoBehaviour {
 	public GameObject PurpleFS;
 	public GameObject StarFS;
 	public GameObject[] pfs;
@@ -12,12 +12,12 @@ public class S2Spawner : MonoBehaviour {
 	public int goTime = 0;
 	public MainCameraScript cams;
 	public int atter = 1;
-	public float screenstop = 384f;
+	public float screenstop = 719f;
 	public float right;
 	public float left;
 	public int stage = 0;
 	public int numEn = 4;
-
+	
 	
 	// Use this for initialization
 	void Start () {

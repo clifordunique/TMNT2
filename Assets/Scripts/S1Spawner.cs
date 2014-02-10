@@ -46,7 +46,7 @@ public class S1Spawner : MonoBehaviour {
 		}
 	}
 	void OnTriggerEnter2D(Collider2D other){
-		if (other == PCol || other == PattCol){
+		if ((other == PCol || other == PattCol)){
 			go = true;
 		}
 	}
