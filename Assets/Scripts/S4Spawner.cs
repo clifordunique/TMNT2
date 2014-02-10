@@ -4,8 +4,10 @@ using System.Collections;
 public class S4Spawner : MonoBehaviour {
 	public GameObject PurpleFS;
 	public GameObject StarFS;
+	public GameObject BlueFS;
 	public GameObject[] pfs;
 	public GameObject[] sfs;
+	public GameObject[] bfs;
 	public bool go = false;
 	public Component PattCol;
 	public Component PCol;
@@ -24,7 +26,7 @@ public class S4Spawner : MonoBehaviour {
 		PattCol = GameObject.Find("PlayerAttackCollider").GetComponent<BoxCollider2D>();
 		PCol = GameObject.Find("Player").GetComponent<BoxCollider2D>();
 		cams = GameObject.Find("Main Camera").GetComponent<MainCameraScript>();
-		sfs = new GameObject[numEn+1];
+		bfs = new GameObject[numEn+1];
 		right = screenstop + 32f;
 		left = screenstop - (32f + 256f);
 	}
@@ -33,16 +35,16 @@ public class S4Spawner : MonoBehaviour {
 	void Update () {
 		if(go){
 			if(goTime == 0){
-				spawnSFS(1, new Vector3(left, 40f, 40f), 1);
+				spawnBFS(1, new Vector3(left, 40f, 40f), 1);
 				stage = 1;
 			}else if(goTime == 50){
-				spawnSFS(2, new Vector3(right, 105f, 105f), 2);
+				spawnBFS(2, new Vector3(right, 105f, 105f), 2);
 				stage = 2;
 			}else if(goTime == 100){
-				spawnSFS (3, new Vector3(right, 105f, 105f), 2);
+				spawnBFS (3, new Vector3(right, 105f, 105f), 2);
 				stage = 3;
 			}else if(goTime == 150){
-				spawnSFS(4, new Vector3(right, 105f, 105f), 2);
+				spawnBFS(4, new Vector3(right, 105f, 105f), 2);
 				stage = 4;
 				go = false;
 			}
@@ -123,6 +125,48 @@ public class S4Spawner : MonoBehaviour {
 					if (sfs[num] != null){
 						StarFSScript nsscript = sfs[num].GetComponent<StarFSScript>();
 						nsscript.attacker = true;
+						atter = num;
+						going = false;
+					}
+				}else{
+					gone = true;
+					num = 0;
+				}
+			}
+		}else if (neednew && stage != 4) {
+			atter = stage + 1;
+		}
+	}
+	void spawnBFS(int num, Vector3 vec, int source){
+		bfs[num] = Instantiate(BlueFS, vec, Quaternion.identity) as GameObject;
+		BlueFSScript bfsscript = bfs[num].GetComponent<BlueFSScript>();
+		bfsscript.source = source;
+		bfsscript.screenstop = screenstop;
+		if (num == atter){
+			bfsscript.attacker = true;
+		}
+		bfsscript.spawner = this;
+		bfsscript.num = num;
+		cams.enemiesAlive += 1;
+	}
+	void BFSdied(int num){
+		Destroy(bfs[num]);
+		cams.enemiesAlive -= 1;
+		cams.points += 1;
+		bfs[num] = null;
+		bool neednew = false;
+		if(atter == num){
+			neednew = true;
+		}
+		if(neednew && cams.enemiesAlive > 0){
+			bool going = true;
+			bool gone = false;
+			while(going){
+				num++;
+				if(numEn >= num){
+					if (bfs[num] != null){
+						BlueFSScript bsscript = bfs[num].GetComponent<BlueFSScript>();
+						bsscript.attacker = true;
 						atter = num;
 						going = false;
 					}

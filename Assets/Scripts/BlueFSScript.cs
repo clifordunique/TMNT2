@@ -231,7 +231,7 @@ public class BlueFSScript : MonoBehaviour {
 	void die(){
 		//Placeholder
 		//Destroy(this.gameObject);
-		spawner.BroadcastMessage("SFSdied", num);
+		spawner.BroadcastMessage("BFSdied", num);
 	}
 	void punch(){
 		attacking = true;

@@ -2430,8 +2430,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PurpleFS: {fileID: 100002, guid: 8c13e58a39fd94a7e8988ce289514baa, type: 2}
   StarFS: {fileID: 100002, guid: 1d0998df6231a4ae38c71f32aac3bb20, type: 2}
+  BlueFS: {fileID: 100002, guid: 24082df24b4ce0045aebf251db47224e, type: 2}
   pfs: []
   sfs: []
+  bfs: []
   go: 0
   PattCol: {fileID: 0}
   PCol: {fileID: 0}
