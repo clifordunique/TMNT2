@@ -15,7 +15,7 @@ public class StarScript : MonoBehaviour {
 	void Update () {
 		float x = transform.position.x;
 		if(x < screenstop + 22f && x > screenstop - 278f && !animator.GetCurrentAnimatorStateInfo(0).IsName("Done")){
-			x += dir*.9f;
+			x += dir*2f;
 			transform.position = new Vector3(x, transform.position.y, transform.position.z);
 		} else {
 			Destroy (this.gameObject);

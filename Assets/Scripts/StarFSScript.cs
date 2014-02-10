@@ -27,23 +27,28 @@ public class StarFSScript : MonoBehaviour {
 	
 	private BoxCollider2D attackCollider;
 	private PlayerScript player;
+	private LevelDataScript levelData;
 	
 	private int entering = 5;
 	
 	//1 from left, 2 right, 3 door
 	public int source;
-	
+
 	private Animator animator;
-	public int hitCooldown = 0;
+	public float hitCooldown = 0;
+	private float attackCooldown = 0;
+	private float disableCollider = 0;
+	private float throwCooldown = 0;
 	
 	// Use this for initialization
 	void Start () {
 		animator = this.GetComponent<Animator>();
 		yPos = transform.position.y;
+		levelData = GameObject.Find("LevelData").GetComponent<LevelDataScript>();
 		attackCollider = this.transform.FindChild("SFSAttColl").GetComponent<BoxCollider2D>();
 		player = GameObject.Find("Player").GetComponent<PlayerScript>();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		GameObject player = GameObject.Find("Player");
@@ -59,9 +64,23 @@ public class StarFSScript : MonoBehaviour {
 		deltaX = 0;
 		deltaY = 0;
 		
-		if(!attacking && hitCooldown == 0)
+		
+		if(hitCooldown > 0)
 		{
-			if(xdist <= punchdist && ydist <= 5){
+			attacking = false;
+			animator.SetBool("Attacking", false);
+			attackCollider.enabled = false;
+		}
+		
+		if(disableCollider <= 0)
+		{
+			attackCollider.enabled = false;
+		}
+
+		if(!attacking && hitCooldown <= 0)
+		{
+			if(xdist <= punchdist && ydist <= 5 && attackCooldown <= 0){
+				attackCooldown = 1.1f;
 				punch();
 			}else if(attacker){
 				StarFSInput(x, playerx, playery, xdist, ydist);
@@ -78,7 +97,8 @@ public class StarFSScript : MonoBehaviour {
 				rtime--;
 			}
 		}
-		if(attacking && hitCooldown == 0)
+
+		if(attacking)
 		{
 			if (animator.GetCurrentAnimatorStateInfo(0).IsName("PunchEnd")){
 				attacking = false;
@@ -88,11 +108,14 @@ public class StarFSScript : MonoBehaviour {
 		}
 		
 		StarFSMovement();
-		if(hitCooldown > 0){
-			hitCooldown--;
-			if(hitCooldown == 0){
-				animator.SetBool ("Hit", false);
-			}
+
+		disableCollider -= Time.deltaTime;
+		attackCooldown -= Time.deltaTime;
+		hitCooldown -= Time.deltaTime;
+		throwCooldown -= Time.deltaTime;
+		
+		if(hitCooldown <= 0){
+			animator.SetBool("Hit", false);
 		}
 	}
 	void StarFSMovement()
@@ -101,13 +124,13 @@ public class StarFSScript : MonoBehaviour {
 		//Using Z axis for Isometric effect
 		float z = yPos + deltaY;
 		
-		if(z > 105f)
+		if(z > levelData.walkSpaceHeight)
 		{
-			z = 105f;
+			z = levelData.walkSpaceHeight;
 		}
-		else if(z < 15f)
+		else if(z < levelData.walkSpaceBottom)
 		{
-			z = 15f;
+			z = levelData.walkSpaceBottom;
 		}
 		z = Mathf.Round(z*10f)/10f;
 		yPos = z;
@@ -149,31 +172,10 @@ public class StarFSScript : MonoBehaviour {
 			deltaY += -.6f;
 		}
 		
-		if((ydist < 8) && (xdist > punchdist + .7f))
+		if((ydist < 8) && (xdist > punchdist + .7f) && throwCooldown <= 0)
 		{
+			throwCooldown = 3;
 			throwStar();
-//			float jumpchance = Random.value;
-//			if(jumpchance <= .01f)
-//			{
-//				animator.SetBool ("Walking", false);
-//				jumpVelocity = 5.7f;
-//				deltaJump += jumpVelocity;
-//				//attacking = true;
-//				jumpKickVelocity = 3f;
-//				//jumpKickVelocity *= Mathf.Sign(playerx-x);
-//				if(deltaX != 0)
-//				{
-//					jumpKickVelocity *= Mathf.Sign(deltaX);
-//				}
-//				else
-//				{
-//					jumpKickVelocity *= transform.localScale.x;
-//				}
-//				animator.SetBool("Jumping", true);
-//				jumped = true;
-//				attacking = true;
-//			}
-
 		}
 	}
 	void wander(){
@@ -222,7 +224,7 @@ public class StarFSScript : MonoBehaviour {
 		}
 		else
 		{
-			hitCooldown = 100;
+			hitCooldown = .4f;
 			animator.SetBool("Hit", true);
 		}
 	}
@@ -233,14 +235,15 @@ public class StarFSScript : MonoBehaviour {
 	}
 	void punch(){
 		attacking = true;
+		disableCollider = .1f;
 		animator.SetBool ("Attacking", true);
 		animator.SetBool ("Walking", false);
 		attackCollider.enabled = true;
 	}
 	void throwStar(){
-		float sx = transform.position.x + 24.5f;
-		float sy = yPos + 40f;
-		GameObject stargen = Instantiate(star, new Vector3(sx, sy, sy), Quaternion.identity) as GameObject;
+		float sx = transform.position.x + 24.5f * Mathf.Sign(transform.localScale.x);
+		float sy = yPos + 36f;
+		GameObject stargen = Instantiate(star, new Vector3(sx, sy, yPos), Quaternion.identity) as GameObject;
 		StarScript ss = stargen.GetComponent<StarScript>();
 		if(transform.position.x < player.transform.position.x){
 			ss.dir = 1;

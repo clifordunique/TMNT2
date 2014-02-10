@@ -50,8 +50,6 @@ public class PurpleFSScript : MonoBehaviour {
 	void Start () {
 		animator = this.GetComponent<Animator>();
 		yPos = transform.position.y;
-		//Entrance animation if applicable?
-		//attackCollider = GameObject.Find("PFSAttColl").GetComponent<BoxCollider2D>();
 		levelData = GameObject.Find("LevelData").GetComponent<LevelDataScript>();
 		attackCollider = this.transform.FindChild("PFSAttColl").GetComponent<BoxCollider2D>();
 		jumpColl = this.transform.FindChild("PFSJumpColl").GetComponent<BoxCollider2D>();

@@ -437,7 +437,7 @@ public class PlayerScript : MonoBehaviour {
 		else if(collide.gameObject.name == "PFSAttColl"
 		        || collide.gameObject.name == "PFSJumpColl"
 		        || collide.gameObject.name == "SFSAttColl"
-		        || collide.gameObject.name == "starFSstar"
+		        || collide.gameObject.name == "starFSstar(Clone)"
 		        || collide.gameObject.name == "WFSAttColl"
 		        || collide.gameObject.name == "WFSJumpColl")
 		{
