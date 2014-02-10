@@ -169,33 +169,33 @@ public class PlayerScript : MonoBehaviour {
 	{
 		//Didnt use getaxis because it has acceleration
 
-		if(Input.GetKey(KeyCode.RightArrow))
+		if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
 		{
 			deltaX += .85f;
 		}
 
-		if(Input.GetKey(KeyCode.LeftArrow))
+		if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
 		{
 			deltaX += -.85f;
 		}
 
-		if(Input.GetKey(KeyCode.UpArrow))
+		if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
 		{
 			deltaY += .7f;
 		}
 
-		if(Input.GetKey(KeyCode.DownArrow))
+		if(Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
 		{
 			deltaY += -.7f;
 		}
 
-		if(Input.GetKeyDown(KeyCode.X) && jumpPos == 0)
+		if((Input.GetKeyDown(KeyCode.X) || Input.GetKey(KeyCode.Period)) && jumpPos == 0)
 		{
 			jumpVelocity = 6.2f;
 			deltaJump += jumpVelocity;
 		}
 
-		if(Input.GetKeyDown(KeyCode.Z))
+		if(Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Comma))
 		{
 			attacking = true;
 			attackCollider.enabled = true;
