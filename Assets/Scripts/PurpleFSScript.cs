@@ -16,7 +16,7 @@ public class PurpleFSScript : MonoBehaviour {
 	public Component spawner;
 	public int num;
 	public bool jumped = false;
-
+	public bool thisTriggered = false;
 	
 	
 	public float deltaX = 0;
@@ -36,7 +36,7 @@ public class PurpleFSScript : MonoBehaviour {
 	private PlayerScript player;
 	private LevelDataScript levelData;
 
-	private int entering = 5;
+	public bool entering = true;
 
 	//1 from left, 2 right, 3 door
 	public int source;
@@ -54,6 +54,7 @@ public class PurpleFSScript : MonoBehaviour {
 		attackCollider = this.transform.FindChild("PFSAttColl").GetComponent<BoxCollider2D>();
 		jumpColl = this.transform.FindChild("PFSJumpColl").GetComponent<BoxCollider2D>();
 		player = GameObject.Find("Player").GetComponent<PlayerScript>();
+
 	}
 	
 	// Update is called once per frame
@@ -74,47 +75,54 @@ public class PurpleFSScript : MonoBehaviour {
 		/*if(jumpPos == 0){
 			animator.SetBool ("Jumping", false);
 		}*/
-
-
-		if(hitCooldown > 0)
-		{
-			attacking = false;
-			animator.SetBool("Attacking", false);
-			attackCollider.enabled = false;
-		}
-
-		if(disableCollider <= 0)
-		{
-			attackCollider.enabled = false;
-		}
-
-		if(!attacking && hitCooldown <= 0)
-		{
-			if(xdist <= punchdist && ydist <= 5 && attackCooldown <= 0){
-				attackCooldown = 1.1f;
-				punch();
-			}else if(attacker){
-				PurpleFSInput(x, playerx, playery, xdist, ydist);
-			}else if(rtime == 0) {
-				wander();
-			}else{
-				if(rdir == 1){
-					deltaX += .7f;
-					animator.SetBool ("Walking", true);
-				}else{
-					deltaX += -.7f;
-					animator.SetBool ("Walking", true);
-				}
-				rtime--;
+		if(entering == true){
+			if(source == 3){
+				animator.Play("pfsKick");
 			}
-		}
-		
-		if(attacking)
-		{
-			if (animator.GetCurrentAnimatorStateInfo(0).IsName("PurpleFSPunchingEnd")){
+			if(animator.GetCurrentAnimatorStateInfo(0).IsName("PurpleStand") || animator.GetCurrentAnimatorStateInfo(0).IsName("PurpleFSWalking")){
+				entering = false;
+			}
+		}else{
+			thisTriggered = true;
+			if(hitCooldown > 0)
+			{
 				attacking = false;
-				animator.SetBool ("Attacking", false);
+				animator.SetBool("Attacking", false);
 				attackCollider.enabled = false;
+			}
+
+			if(disableCollider <= 0)
+			{
+				attackCollider.enabled = false;
+			}
+
+			if(!attacking && hitCooldown <= 0)
+			{
+				if(xdist <= punchdist && ydist <= 5 && attackCooldown <= 0){
+					attackCooldown = 1.1f;
+					punch();
+				}else if(attacker){
+					PurpleFSInput(x, playerx, playery, xdist, ydist);
+				}else if(rtime == 0) {
+					wander();
+				}else{
+					if(rdir == 1){
+						deltaX += .7f;
+						animator.SetBool ("Walking", true);
+					}else{
+						deltaX += -.7f;
+						animator.SetBool ("Walking", true);
+					}
+					rtime--;
+				}
+			}
+			if(attacking)
+			{
+				if (animator.GetCurrentAnimatorStateInfo(0).IsName("PurpleFSPunchingEnd")){
+					attacking = false;
+					animator.SetBool ("Attacking", false);
+					attackCollider.enabled = false;
+				}
 			}
 		}
 

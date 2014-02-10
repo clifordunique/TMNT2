@@ -31,16 +31,16 @@ public class S2Spawner : MonoBehaviour {
 	void Update () {
 		if(go){
 			if(goTime == 0){
-				spawnSFS(1, new Vector3(right, 105f, 105f), 2);
+				spawnSFS(1, new Vector3(left, 40f, 40f), 1);
 				stage = 1;
 			}else if(goTime == 50){
-				spawnSFS(2, new Vector3(left, 80f, 80f), 1);
+				spawnSFS(2, new Vector3(right, 105f, 105f), 2);
 				stage = 2;
 			}else if(goTime == 100){
-				spawnSFS (3, new Vector3(left, 40f, 40f), 1);
+				spawnSFS (3, new Vector3(right, 105f, 105f), 2);
 				stage = 3;
 			}else if(goTime == 150){
-				spawnSFS(4, new Vector3(right, 105f, 105f), 1);
+				spawnSFS(4, new Vector3(right, 105f, 105f), 2);
 				stage = 4;
 				go = false;
 			}
