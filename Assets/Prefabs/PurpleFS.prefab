@@ -167,10 +167,12 @@ MonoBehaviour:
   spawner: {fileID: 0}
   num: 0
   jumped: 0
+  thisTriggered: 0
   deltaX: 0
   yPos: 0
   jumpPos: 0
   jumpKickVelocity: 0
+  entering: 5
   source: 0
   hitCooldown: 0
 --- !u!212 &21200000
@@ -194,7 +196,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_SortingLayerID: 3601796335
-  m_Sprite: {fileID: 21300000, guid: 0d8f2e6a40d3c4bd48a8340d5cf38b66, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 857e810a1ebe94f34be4fff7f2c554c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
