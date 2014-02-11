@@ -32,7 +32,7 @@ public class S9Spawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		cams = GameObject.Find("Main Camera").GetComponent<MainCameraScript>();
-		sfs = new GameObject[numEn+1];
+		bfs = new GameObject[numEn+1];
 		right = screenstop + 32f;
 		left = screenstop - (32f + 256f);
 		dooranim = GameObject.Find("DoorA_4").GetComponent<Animator>();
