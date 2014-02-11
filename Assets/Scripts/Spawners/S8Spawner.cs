@@ -1,27 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class S?Spawner : MonoBehaviour {
+public class S8Spawner : MonoBehaviour {
 	public GameObject PurpleFS;
 	public GameObject StarFS;
+	public GameObject BlueFS;
 	public GameObject[] pfs;
 	public GameObject[] sfs;
+	public GameObject[] bfs;
 	public bool go = false;
+	public Component PattCol;
+	public Component PCol;
 	public int goTime = 0;
 	public MainCameraScript cams;
 	public int atter = 1;
-	public float screenstop = 898f;
+	public float screenstop = 1376f;
 	public float right;
 	public float left;
 	public int stage = 0;
-	public Animator dooranim;
-	public GameObject pfskickA_2;
-	public bool doordone = false;
-	public bool go2 = false;
+	public int numEn = 4;
 	public bool done1 = false;
 	public bool done2 = false;
+	public bool go2 = false;
 	public int goTime2 = 0;
-	public int numEn = 5;
+	public Animator dooranim;
+	public GameObject pfskickA_3;
+	public bool doordone = false;
+	
 	
 	// Use this for initialization
 	void Start () {
@@ -29,8 +34,8 @@ public class S?Spawner : MonoBehaviour {
 		sfs = new GameObject[numEn+1];
 		right = screenstop + 32f;
 		left = screenstop - (32f + 256f);
-		dooranim = GameObject.Find("DoorA_2").GetComponent<Animator>();
-		pfskickA_2 = GameObject.Find("pfskickA_2");
+		dooranim = GameObject.Find("DoorA_3").GetComponent<Animator>();
+		pfskickA_3 = GameObject.Find("pfskickA_3");
 	}
 	
 	// Update is called once per frame
@@ -40,44 +45,34 @@ public class S?Spawner : MonoBehaviour {
 		}
 		if(!go && doordone){
 			go = true;
-			Destroy(pfskickA_2);
-			spawnSFS(1, new Vector3(818f,114f,114f), 3);
+			Destroy(pfskickA_3);
+			spawnSFS(1, new Vector3(1202f,114f,114f), 3);
 			stage = 1;
 		}
 		if(go){
-			if(goTime == 50){
+			if(goTime == 0){
 				spawnSFS(2, new Vector3(left, 105f, 105f), 1);
-				stage = 2;
-			}else if(goTime == 100){
-				spawnSFS (3, new Vector3(left, 60f, 60f), 1);
-				stage = 3;
-			}else if(goTime == 150){
-				spawnSFS(4, new Vector3(right, 80f, 80f), 2);
+				stage = 1;
+			}else if(goTime == 50){
+				spawnSFS(3, new Vector3(left, 60f, 60f),1);
 				stage = 4;
-			}else if(goTime == 200){
-				spawnSFS(5, new Vector3(right, 40f, 40f), 2);
-				stage = 5;
 				go = false;
 				done1 = true;
 			}
 			goTime++;
 		}
-		/*if(go2){
+		if(go2){
 			if(goTime2 == 0){
-				spawnSFS (1, new Vector3(right, 105f, 105f), 2);
+				spawnSFS (1, new Vector3(right, 80f, 80f), 2);
 				stage = 1;
 			}else if(goTime2 == 50){
-				spawnSFS (2, new Vector3(right, 105f, 105f), 2);
-				stage = 2;
-			}else if(goTime2 == 100){
-				spawnSFS (3, new Vector3(left, 105f, 105f), 1);
-				stage = 3;
-			}else if(goTime2 == 150){
-				spawnSFS (4, new Vector3(right, 105f, 105f), 2);
+				spawnSFS(2, new Vector3(right, 40f, 40f), 2);
 				stage = 4;
+				go2 = false;
+				done2 = true;
 			}
 			goTime2++;
-		}*/
+		}
 	}
 	void spawnPFS(int num, Vector3 vec, int source){
 		pfs[num] = Instantiate(PurpleFS, vec, Quaternion.identity) as GameObject;
@@ -95,22 +90,31 @@ public class S?Spawner : MonoBehaviour {
 		cams.enemiesAlive -= 1;
 		cams.points += 1;
 		pfs[num] = null;
-		if(atter == num && cams.enemiesAlive > 0){
+		bool neednew = false;
+		if(atter == num){
+			neednew = true;
+		}
+		if(neednew && cams.enemiesAlive > 0){
 			bool going = true;
 			while(going){
 				num++;
-				if (pfs[num] != null){
-					PurpleFSScript npscript = pfs[num].GetComponent<PurpleFSScript>();
-					npscript.attacker = true;
-					atter = num;
-					going = false;
+				if(numEn >= num){
+					if (pfs[num] != null){
+						PurpleFSScript npscript = pfs[num].GetComponent<PurpleFSScript>();
+						npscript.attacker = true;
+						atter = num;
+						going = false;
+					}
+				}else{
+					num = 0;
 				}
 			}
-		}else if (atter == num && stage != 5) {
+		}else if (neednew && stage != 4) {
 			atter = stage + 1;
 		}
 		if (cams.enemiesAlive == 0 && done1 == true && done2 == false) {
 			go2 = true;
+			atter = 1;
 		}
 	}
 	void spawnSFS(int num, Vector3 vec, int source){
@@ -151,11 +155,57 @@ public class S?Spawner : MonoBehaviour {
 					num = 0;
 				}
 			}
-		}else if (neednew && stage != 5) {
+		}else if (neednew && stage != 4) {
 			atter = stage + 1;
-		}
-		if (cams.enemiesAlive == 0 && done1 == true && done2 == false) {
+		}if (cams.enemiesAlive == 0 && done1 == true && done2 == false) {
 			go2 = true;
+			atter = 1;
+		}
+	}
+	void spawnBFS(int num, Vector3 vec, int source){
+		bfs[num] = Instantiate(BlueFS, vec, Quaternion.identity) as GameObject;
+		BlueFSScript bfsscript = bfs[num].GetComponent<BlueFSScript>();
+		bfsscript.source = source;
+		bfsscript.screenstop = screenstop;
+		if (num == atter){
+			bfsscript.attacker = true;
+		}
+		bfsscript.spawner = this;
+		bfsscript.num = num;
+		cams.enemiesAlive += 1;
+	}
+	void BFSdied(int num){
+		Destroy(bfs[num]);
+		cams.enemiesAlive -= 1;
+		cams.points += 1;
+		bfs[num] = null;
+		bool neednew = false;
+		if(atter == num){
+			neednew = true;
+		}
+		if(neednew && cams.enemiesAlive > 0){
+			bool going = true;
+			bool gone = false;
+			while(going){
+				num++;
+				if(numEn >= num){
+					if (bfs[num] != null){
+						BlueFSScript bsscript = bfs[num].GetComponent<BlueFSScript>();
+						bsscript.attacker = true;
+						atter = num;
+						going = false;
+					}
+				}else{
+					gone = true;
+					num = 0;
+				}
+			}
+		}else if (neednew && stage != 4) {
+			atter = stage + 1;
+		}if (cams.enemiesAlive == 0 && done1 == true && done2 == false) {
+			go2 = true;
+			atter = 1;
 		}
 	}
 }
+
