@@ -31,8 +31,6 @@ public class S11Spawner : MonoBehaviour {
 	public bool doordone1 = false;
 	public bool doordone2 = false;
 	public int enemiesAlive = 0;
-	public bool stopSpawn1 = false;
-	public bool stopSpawn2 = false;
 	
 	
 	// Use this for initialization
@@ -55,17 +53,15 @@ public class S11Spawner : MonoBehaviour {
 		if (dooranimB_2 != null){
 			doordone2 = dooranimB_2.GetCurrentAnimatorStateInfo(0).IsName("DoorBEnd");
 		}
-		if(!go1 && doordone1 && !stopSpawn1){
+		if(!go1 && doordone1){
 			go1 = true;
-			stopSpawn1 = true;
 			Destroy (pfsstandB_1);
 			stage++;
 			spawnSFS(stage, new Vector3(1458f,114f,114f), 3);
 
 		}
-		if(!go2 && doordone2 && !stopSpawn2){
+		if(!go2 && doordone2){
 			go2 = true;
-			stopSpawn2 = true;
 			Destroy (pfsstandB_2);
 			stage++;
 			spawnSFS(stage, new Vector3(1587f,114f,114f), 3);
