@@ -93,6 +93,25 @@ public class WhiteFSScript : MonoBehaviour {
 			}else if(rtime == 0) {
 				wander();
 			}else{
+				float dist = (transform.position - Camera.main.transform.position).z;
+				float leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0,0,dist)).x;
+				float rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1,0,dist)).x;
+				
+				if(this.transform.position.x < leftBorder)
+				{
+					rdir = 1;
+					deltaX += .7f;
+					animator.SetBool ("Walking", true);
+					rtime = 75;
+				}
+				else if(this.transform.position.x > rightBorder)
+				{
+					rdir = -1;
+					deltaX += -.7f;
+					animator.SetBool ("Walking", true);
+					rtime = 75;
+				}
+
 				if(rdir == 1){
 					deltaX += .7f;
 					animator.SetBool ("Walking", true);

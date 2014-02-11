@@ -98,18 +98,47 @@ public class PurpleFSScript : MonoBehaviour {
 
 			if(!attacking && hitCooldown <= 0)
 			{
-				if(xdist <= punchdist && ydist <= 5 && attackCooldown <= 0){
+				if(xdist <= punchdist && ydist <= 5 && attackCooldown <= 0)
+				{
 					attackCooldown = 1.1f;
 					punch();
-				}else if(attacker){
+				}
+				else if(attacker)
+				{
 					PurpleFSInput(x, playerx, playery, xdist, ydist);
-				}else if(rtime == 0) {
+				}
+				else if(rtime == 0) 
+				{
 					wander();
-				}else{
-					if(rdir == 1){
+				}
+				else
+				{
+					float dist = (transform.position - Camera.main.transform.position).z;
+					float leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0,0,dist)).x;
+					float rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1,0,dist)).x;
+					
+					if(this.transform.position.x < leftBorder)
+					{
+						rdir = 1;
 						deltaX += .7f;
 						animator.SetBool ("Walking", true);
-					}else{
+						rtime = 75;
+					}
+					else if(this.transform.position.x > rightBorder)
+					{
+						rdir = -1;
+						deltaX += -.7f;
+						animator.SetBool ("Walking", true);
+						rtime = 75;
+					}
+
+					if(rdir == 1)
+					{
+						deltaX += .7f;
+						animator.SetBool ("Walking", true);
+					}
+					else
+					{
 						deltaX += -.7f;
 						animator.SetBool ("Walking", true);
 					}
@@ -265,15 +294,19 @@ public class PurpleFSScript : MonoBehaviour {
 			}
 		}*/
 	}
-	void wander(){
+	void wander()
+	{
 		float dir = Random.value;
 
-		if (dir <= .5){
+		if (dir <= .5)
+		{
 			rdir = 1;
 			deltaX += .7f;
 			animator.SetBool ("Walking", true);
 			rtime = 50;
-		}else{
+		}
+		else
+		{
 			rdir = -1;
 			deltaX += -.7f;
 			animator.SetBool ("Walking", true);
