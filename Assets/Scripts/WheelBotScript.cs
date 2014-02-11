@@ -23,17 +23,30 @@ public class WheelBotScript : MonoBehaviour {
 	public float attackCooldown = 0;
 	public float attackAnimation = 0;
 
+	private bool freeze = true;
+
 	void Start () 
 	{
 		yPos = transform.position.y;
 		animator = this.GetComponent<Animator>();
 		cam = GameObject.Find("Main Camera").GetComponent<MainCameraScript>();
+		cam.victory += 1;
 		levelData = GameObject.Find("LevelData").GetComponent<LevelDataScript>();
 		player = GameObject.Find("Player").GetComponent<PlayerScript>();
 	}
 	
 	void Update () 
 	{
+		if(freeze)
+		{
+			if(player.transform.position.x > this.transform.position.x - 100)
+			{
+				freeze = false;
+			}
+
+			return;
+		}
+
 		attackCooldown -= Time.deltaTime;
 		attackAnimation -= Time.deltaTime;
 		hitCooldown -= Time.deltaTime;
@@ -41,6 +54,8 @@ public class WheelBotScript : MonoBehaviour {
 		if(life <= 0 && hitCooldown <= 0)
 		{
 			cam.points += 1;
+			cam.victoryTimer = 10;
+			cam.victory -= 1;
 			Destroy(this.gameObject);
 		}
 

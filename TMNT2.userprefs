@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BlueFSScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WheelBotScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\StarFSScript.cs" Line="39" Column="31" />
-      <File FileName="Assets\Scripts\BlueFSScript.cs" Line="197" Column="21" />
+      <File FileName="Assets\Scripts\WheelBotScript.cs" Line="50" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

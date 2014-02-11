@@ -25,7 +25,7 @@ public class KunaiScript : MonoBehaviour {
 		this.transform.position = position;
 
 		distance += deltaX;
-		if(distance > 512 || distance < -512)
+		if(distance > 512 || distance < -512 || animator.GetCurrentAnimatorStateInfo(0).IsName("Done"))
 		{
 			Destroy(this.gameObject);
 		}

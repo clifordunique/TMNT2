@@ -3,10 +3,11 @@ using System.Collections;
 
 public class MainCameraScript : MonoBehaviour {
 	public bool stopMovement = false;
-
 	public int points = 0;
-
+	public int victory = 0;
 	public int enemiesAlive = 0;
+
+	public float victoryTimer = 0;
 
 	private LevelDataScript levelData;
 	private GameObject player;
@@ -24,6 +25,13 @@ public class MainCameraScript : MonoBehaviour {
 		if(aud.time >= levelData.songLoopEnd)
 		{
 			aud.time = levelData.songLoopStart;
+		}
+
+		victoryTimer -= Time.deltaTime;
+
+		if(victory == 0 && victoryTimer <= 0)
+		{
+			Application.LoadLevel("_LevelSelect");
 		}
 
 		if(enemiesAlive > 0)
@@ -66,5 +74,14 @@ public class MainCameraScript : MonoBehaviour {
 	void OnGUI()
 	{
 		GUI.Label(new Rect(230, 45, 100, 20), points.ToString());
+
+		if(victory == 0)
+		{
+			GUIStyle style = new GUIStyle();
+			style.normal.textColor = Color.green;
+			style.alignment = TextAnchor.MiddleCenter;
+			style.fontSize = 100;
+			GUI.Label(new Rect(256, 230, 256, 230), "VICTORY", style);
+		}
 	}
 }
