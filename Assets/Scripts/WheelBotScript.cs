@@ -39,7 +39,7 @@ public class WheelBotScript : MonoBehaviour {
 	{
 		if(freeze)
 		{
-			if(player.transform.position.x > this.transform.position.x - 100)
+			if(player.transform.position.x > this.transform.position.x - 80)
 			{
 				freeze = false;
 			}

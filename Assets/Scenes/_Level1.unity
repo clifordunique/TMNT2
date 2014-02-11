@@ -1650,6 +1650,7 @@ MonoBehaviour:
   done2: 0
   go2: 0
   goTime2: 0
+  enemiesAlive: 0
 --- !u!61 &600973501
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2291,6 +2292,7 @@ MonoBehaviour:
   done2: 0
   go2: 0
   goTime2: 0
+  enemiesAlive: 0
 --- !u!61 &766654659
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2420,6 +2422,7 @@ MonoBehaviour:
   right: 0
   left: 0
   stage: 0
+  enemiesAlive: 0
 --- !u!61 &804508778
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2902,6 +2905,7 @@ MonoBehaviour:
   done2: 0
   goTime2: 0
   numEn: 6
+  enemiesAlive: 0
 --- !u!4 &995881917
 Transform:
   m_ObjectHideFlags: 0
@@ -3106,6 +3110,7 @@ MonoBehaviour:
   done2: 0
   go2: 0
   goTime2: 0
+  enemiesAlive: 0
 --- !u!1 &1077545636
 GameObject:
   m_ObjectHideFlags: 0
@@ -4408,6 +4413,7 @@ MonoBehaviour:
   left: 0
   stage: 0
   numEn: 4
+  enemiesAlive: 0
 --- !u!61 &1356120405
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4880,6 +4886,7 @@ MonoBehaviour:
   dooranim: {fileID: 0}
   pfskickA_3: {fileID: 0}
   doordone: 0
+  enemiesAlive: 0
 --- !u!4 &1543276518
 Transform:
   m_ObjectHideFlags: 0
@@ -6080,6 +6087,7 @@ MonoBehaviour:
   dooranim: {fileID: 0}
   pfskickA_4: {fileID: 0}
   doordone: 0
+  enemiesAlive: 0
 --- !u!4 &1889727865
 Transform:
   m_ObjectHideFlags: 0
@@ -6609,6 +6617,7 @@ MonoBehaviour:
   pfsstandB_2: {fileID: 0}
   doordone1: 0
   doordone2: 0
+  enemiesAlive: 0
 --- !u!1001 &2025880268
 Prefab:
   m_ObjectHideFlags: 0
@@ -6782,6 +6791,7 @@ MonoBehaviour:
   done2: 0
   goTime2: 0
   numEn: 4
+  enemiesAlive: 0
 --- !u!4 &2046875927
 Transform:
   m_ObjectHideFlags: 0
@@ -6962,6 +6972,7 @@ MonoBehaviour:
   done2: 0
   go2: 0
   goTime2: 0
+  enemiesAlive: 0
 --- !u!61 &2083390338
 BoxCollider2D:
   m_ObjectHideFlags: 0

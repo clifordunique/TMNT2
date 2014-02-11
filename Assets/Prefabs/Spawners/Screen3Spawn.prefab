@@ -58,6 +58,7 @@ MonoBehaviour:
   done2: 0
   goTime2: 0
   numEn: 4
+  enemiesAlive: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
