@@ -66,7 +66,7 @@ public class S11Spawner : MonoBehaviour {
 			stage++;
 			spawnSFS(stage, new Vector3(1587f,114f,114f), 3);
 		}
-		if(go1 && go2){
+		if(go1 && go2 && !done1){
 			if(goTime == 0){
 				spawnSFS(3, new Vector3(right, 105f, 105f), 2);
 				stage = 3;
@@ -79,8 +79,8 @@ public class S11Spawner : MonoBehaviour {
 			}else if(goTime == 50){
 				spawnSFS(6, new Vector3(right, 105f, 105f),2);
 				stage = 6;
-				go1 = false;
-				go2 = false;
+				//go1 = false;
+				//go2 = false;
 				done1 = true;
 			}
 			goTime++;
