@@ -245,12 +245,14 @@ public class BlueFSScript : MonoBehaviour {
 		float sy = yPos + 36f;
 		GameObject kunaigen = Instantiate(kunai, new Vector3(sx, sy, yPos), Quaternion.identity) as GameObject;
 		KunaiScript ss = kunaigen.GetComponent<KunaiScript>();
-		if(transform.position.x < player.transform.position.x){
-			ss.dir = 1;
-		}else{
-			ss.dir = -1;
+
+		if(transform.localScale.x > 0)
+		{
+			ss.deltaX = 2f;
 		}
-		ss.screenstop = screenstop;
-		
+		else
+		{
+			ss.deltaX = -2f;
+		}
 	}
 }

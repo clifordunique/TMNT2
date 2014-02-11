@@ -14,7 +14,7 @@ public class LaserScript : MonoBehaviour {
 		this.transform.position = position;
 
 		distance += deltaX;
-		if(distance > 256)
+		if(distance > 400 || distance < -400)
 		{
 			Destroy(this.gameObject);
 		}

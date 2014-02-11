@@ -257,12 +257,15 @@ public class StarFSScript : MonoBehaviour {
 		float sy = yPos + 36f;
 		GameObject stargen = Instantiate(star, new Vector3(sx, sy, yPos), Quaternion.identity) as GameObject;
 		StarScript ss = stargen.GetComponent<StarScript>();
-		if(transform.position.x < player.transform.position.x){
-			ss.dir = 1;
-		}else{
-			ss.dir = -1;
+		
+		if(transform.localScale.x > 0)
+		{
+			ss.deltaX = 2f;
 		}
-		ss.screenstop = screenstop;
+		else
+		{
+			ss.deltaX = -2f;
+		}
 
 	}
 }
