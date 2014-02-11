@@ -45,6 +45,7 @@ public class PurpleFSScript : MonoBehaviour {
 	public float hitCooldown = 0;
 	private float attackCooldown = 0;
 	private float disableCollider = 0;
+	private float deathTimer = 0;
 	
 	// Use this for initialization
 	void Start () {
@@ -59,6 +60,18 @@ public class PurpleFSScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(life <= 0)
+		{
+			deathTimer -= Time.deltaTime;
+
+			if(deathTimer <= 0)
+			{
+				die();
+			}
+
+			return;
+		}
+
 		GameObject player = GameObject.Find("Player");
 		PlayerScript playerScript = player.GetComponent<PlayerScript>();
 		float playerx = player.transform.position.x;
@@ -343,7 +356,11 @@ public class PurpleFSScript : MonoBehaviour {
 
 		if(life <= 0)
 		{
-			die();
+			animator.SetBool("Die", true);
+			this.collider2D.enabled = false;
+			attackCollider.enabled = false;
+			jumpColl.enabled = false;
+			deathTimer = 1;
 		}
 		else
 		{
@@ -352,8 +369,6 @@ public class PurpleFSScript : MonoBehaviour {
 		}
 	}
 	void die(){
-		//Placeholder
-		//Destroy(this.gameObject);
 		spawner.BroadcastMessage("PFSdied", num);
 	}
 	void punch(){
