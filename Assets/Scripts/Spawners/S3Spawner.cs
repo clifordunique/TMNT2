@@ -44,6 +44,7 @@ public class S3Spawner : MonoBehaviour {
 			Destroy(pfskickA_1);
 			spawnSFS(1, new Vector3(432f,114f,114f), 3);
 			stage = 1;
+			doordone = false;
 		}
 		if(go){
 			if(goTime == 50){

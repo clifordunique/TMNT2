@@ -49,6 +49,7 @@ public class S8Spawner : MonoBehaviour {
 			Destroy(pfskickA_3);
 			spawnSFS(1, new Vector3(1202f,114f,114f), 3);
 			stage = 1;
+			doordone = false;
 		}
 		if(go){
 			if(goTime == 0){
