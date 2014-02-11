@@ -33,6 +33,7 @@ public class S9Spawner : MonoBehaviour {
 	void Start () {
 		cams = GameObject.Find("Main Camera").GetComponent<MainCameraScript>();
 		bfs = new GameObject[numEn+1];
+		sfs = new GameObject[numEn+1];
 		right = screenstop + 32f;
 		left = screenstop - (32f + 256f);
 		dooranim = GameObject.Find("DoorA_4").GetComponent<Animator>();
@@ -65,7 +66,7 @@ public class S9Spawner : MonoBehaviour {
 		}
 		if(go2){
 			if(goTime2 == 0){
-				spawnBFS (1, new Vector3(right, 105f, 105f), 2);
+				spawnSFS (1, new Vector3(right, 105f, 105f), 2);
 				stage = 4;
 				go2 = false;
 				done2 = true;
