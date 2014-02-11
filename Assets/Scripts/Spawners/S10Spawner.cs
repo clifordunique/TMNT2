@@ -25,6 +25,7 @@ public class S10Spawner : MonoBehaviour {
 	public bool done2 = false;
 	public bool go2 = false;
 	public int goTime2 = 0;
+	public int enemiesAlive = 0;
 	
 	
 	// Use this for initialization
@@ -88,17 +89,19 @@ public class S10Spawner : MonoBehaviour {
 		pfsscript.spawner = this;
 		pfsscript.num = num;
 		cams.enemiesAlive += 1;
+		enemiesAlive += 1;
 	}
 	void PFSdied(int num){
 		Destroy(pfs[num]);
 		cams.enemiesAlive -= 1;
+		enemiesAlive -= 1;
 		cams.points += 1;
 		pfs[num] = null;
 		bool neednew = false;
 		if(atter == num){
 			neednew = true;
 		}
-		if(neednew && cams.enemiesAlive > 0){
+		if(neednew && enemiesAlive > 0){
 			bool going = true;
 			while(going){
 				num++;
@@ -116,7 +119,7 @@ public class S10Spawner : MonoBehaviour {
 		}else if (neednew && stage != 4) {
 			atter = stage + 1;
 		}
-		if (cams.enemiesAlive == 0 && done1 == true && done2 == false) {
+		if (enemiesAlive == 0 && done1 == true && done2 == false) {
 			go2 = true;
 			atter = 1;
 		}
@@ -132,17 +135,19 @@ public class S10Spawner : MonoBehaviour {
 		sfsscript.spawner = this;
 		sfsscript.num = num;
 		cams.enemiesAlive += 1;
+		enemiesAlive += 1;
 	}
 	void SFSdied(int num){
 		Destroy(sfs[num]);
 		cams.enemiesAlive -= 1;
+		enemiesAlive -= 1;
 		cams.points += 1;
 		sfs[num] = null;
 		bool neednew = false;
 		if(atter == num){
 			neednew = true;
 		}
-		if(neednew && cams.enemiesAlive > 0){
+		if(neednew && enemiesAlive > 0){
 			bool going = true;
 			bool gone = false;
 			while(going){
@@ -161,7 +166,7 @@ public class S10Spawner : MonoBehaviour {
 			}
 		}else if (neednew && stage != 4) {
 			atter = stage + 1;
-		}if (cams.enemiesAlive == 0 && done1 == true && done2 == false) {
+		}if (enemiesAlive == 0 && done1 == true && done2 == false) {
 			go2 = true;
 			atter = 1;
 		}
@@ -177,17 +182,19 @@ public class S10Spawner : MonoBehaviour {
 		bfsscript.spawner = this;
 		bfsscript.num = num;
 		cams.enemiesAlive += 1;
+		enemiesAlive += 1;
 	}
 	void BFSdied(int num){
 		Destroy(bfs[num]);
 		cams.enemiesAlive -= 1;
+		enemiesAlive -= 1;
 		cams.points += 1;
 		bfs[num] = null;
 		bool neednew = false;
 		if(atter == num){
 			neednew = true;
 		}
-		if(neednew && cams.enemiesAlive > 0){
+		if(neednew && enemiesAlive > 0){
 			bool going = true;
 			bool gone = false;
 			while(going){
@@ -206,7 +213,7 @@ public class S10Spawner : MonoBehaviour {
 			}
 		}else if (neednew && stage != 4) {
 			atter = stage + 1;
-		}if (cams.enemiesAlive == 0 && done1 == true && done2 == false) {
+		}if (enemiesAlive == 0 && done1 == true && done2 == false) {
 			go2 = true;
 			atter = 1;
 		}
@@ -221,17 +228,19 @@ public class S10Spawner : MonoBehaviour {
 		wfsscript.spawner = this;
 		wfsscript.num = num;
 		cams.enemiesAlive += 1;
+		enemiesAlive += 1;
 	}
 	void WFSdied(int num){
 		Destroy(wfs[num]);
 		cams.enemiesAlive -= 1;
+		enemiesAlive -= 1;
 		cams.points += 1;
 		wfs[num] = null;
 		bool neednew = false;
 		if(atter == num){
 			neednew = true;
 		}
-		if(neednew && cams.enemiesAlive > 0){
+		if(neednew && enemiesAlive > 0){
 			bool going = true;
 			bool gone = false;
 			while(going){
@@ -250,7 +259,7 @@ public class S10Spawner : MonoBehaviour {
 			}
 		}else if (neednew && stage != 4) {
 			atter = stage + 1;
-		}if (cams.enemiesAlive == 0 && done1 == true && done2 == false) {
+		}if (enemiesAlive == 0 && done1 == true && done2 == false) {
 			go2 = true;
 			atter = 1;
 		}

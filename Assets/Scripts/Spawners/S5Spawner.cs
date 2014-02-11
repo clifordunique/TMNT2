@@ -22,6 +22,7 @@ public class S5Spawner : MonoBehaviour {
 	public bool done2 = false;
 	public int goTime2 = 0;
 	public int numEn = 6;
+	public int enemiesAlive = 0;
 	
 	// Use this for initialization
 	void Start () {
@@ -92,13 +93,15 @@ public class S5Spawner : MonoBehaviour {
 		pfsscript.spawner = this;
 		pfsscript.num = num;
 		cams.enemiesAlive += 1;
+		enemiesAlive += 1;
 	}
 	void PFSdied(int num){
 		Destroy(pfs[num]);
 		cams.enemiesAlive -= 1;
+		enemiesAlive -= 1;
 		cams.points += 1;
 		pfs[num] = null;
-		if(atter == num && cams.enemiesAlive > 0){
+		if(atter == num && enemiesAlive > 0){
 			bool going = true;
 			while(going){
 				num++;
@@ -112,7 +115,7 @@ public class S5Spawner : MonoBehaviour {
 		}else if (atter == num && stage != 6) {
 			atter = stage + 1;
 		}
-		if (cams.enemiesAlive == 0 && done1 == true && done2 == false) {
+		if (enemiesAlive == 0 && done1 == true && done2 == false) {
 			go2 = true;
 		}
 	}
@@ -127,17 +130,19 @@ public class S5Spawner : MonoBehaviour {
 		sfsscript.spawner = this;
 		sfsscript.num = num;
 		cams.enemiesAlive += 1;
+		enemiesAlive += 1;
 	}
 	void SFSdied(int num){
 		Destroy(sfs[num]);
 		cams.enemiesAlive -= 1;
+		enemiesAlive -= 1;
 		cams.points += 1;
 		sfs[num] = null;
 		bool neednew = false;
 		if(atter == num){
 			neednew = true;
 		}
-		if(neednew && cams.enemiesAlive > 0){
+		if(neednew && enemiesAlive > 0){
 			bool going = true;
 			bool gone = false;
 			while(going){
@@ -157,7 +162,7 @@ public class S5Spawner : MonoBehaviour {
 		}else if (neednew && stage != 6) {
 			atter = stage + 1;
 		}
-		if (cams.enemiesAlive == 0 && done1 == true && done2 == false) {
+		if (enemiesAlive == 0 && done1 == true && done2 == false) {
 			go2 = true;
 		}
 	}

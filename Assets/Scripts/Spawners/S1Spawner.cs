@@ -14,6 +14,7 @@ public class S1Spawner : MonoBehaviour {
 	public float right;
 	public float left;
 	public int stage = 0;
+	public int enemiesAlive = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -59,14 +60,16 @@ public class S1Spawner : MonoBehaviour {
 		}
 		pfsscript.spawner = this;
 		pfsscript.num = num;
+		enemiesAlive += 1;
 		cams.enemiesAlive += 1;
 	}
 	void PFSdied(int num){
 		Destroy(pfs[num]);
+		enemiesAlive -= 1;
 		cams.enemiesAlive -= 1;
 		cams.points += 1;
 		pfs[num] = null;
-		if(atter == num && cams.enemiesAlive > 0){
+		if(atter == num && enemiesAlive > 0){
 			bool going = true;
 			while(going){
 				num++;

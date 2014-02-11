@@ -248,7 +248,7 @@ public class WhiteFSScript : MonoBehaviour {
 			{
 				animator.SetBool ("Walking", false);
 				jumpColl.enabled = true;
-				jumpVelocity = 4f;
+				jumpVelocity = 6.2f;
 				deltaJump += jumpVelocity;
 
 				if(jumpVelocity > 0)
@@ -306,6 +306,7 @@ public class WhiteFSScript : MonoBehaviour {
 	void OnHit(){
 		attacking = false;
 		attackCollider.enabled = false;
+		jumpColl.enabled = false;
 		animator.SetBool ("Walking", false);
 		if(player.specialAttack)
 		{
