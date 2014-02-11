@@ -67,7 +67,6 @@ public class PurpleFSScript : MonoBehaviour {
 			if(deathTimer <= 0)
 			{
 				die();
-				Debug.Log(gameObject.name + " " + num.ToString() + " " + attacker.ToString() + " " + spawner.name);
 				Destroy(this.gameObject);
 			}
 

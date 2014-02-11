@@ -23,6 +23,7 @@ public class S3Spawner : MonoBehaviour {
 	public int goTime2 = 0;
 	public int numEn = 4;
 	public int enemiesAlive = 0;
+	public bool stopSpawn = false;
 
 	// Use this for initialization
 	void Start () {
@@ -39,14 +40,16 @@ public class S3Spawner : MonoBehaviour {
 		if (dooranim != null){
 			doordone = dooranim.GetCurrentAnimatorStateInfo(0).IsName("DoorAEnd");
 		}
-		if(!go && doordone){
+		if(!go && doordone && !stopSpawn){
 			go = true;
+			stopSpawn = true;
 			Destroy(pfskickA_1);
 			spawnSFS(1, new Vector3(432f,114f,114f), 3);
 			stage = 1;
 		}
 		if(go){
 			if(goTime == 50){
+				cams.enemiesAlive += 1;
 				spawnSFS(2, new Vector3(left, 80f, 80f), 1);
 				stage = 2;
 			}else if(goTime == 100){
@@ -71,6 +74,7 @@ public class S3Spawner : MonoBehaviour {
 				spawnSFS (3, new Vector3(left, 105f, 105f), 1);
 				stage = 3;
 			}else if(goTime2 == 150){
+				cams.enemiesAlive -= 1;
 				spawnSFS (4, new Vector3(right, 105f, 105f), 2);
 				stage = 4;
 			}

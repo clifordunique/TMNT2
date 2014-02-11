@@ -23,6 +23,7 @@ public class S5Spawner : MonoBehaviour {
 	public int goTime2 = 0;
 	public int numEn = 6;
 	public int enemiesAlive = 0;
+	public bool stopSpawn = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -39,8 +40,9 @@ public class S5Spawner : MonoBehaviour {
 		if (dooranim != null){
 			doordone = dooranim.GetCurrentAnimatorStateInfo(0).IsName("DoorAEnd");
 		}
-		if(!go && doordone){
+		if(!go && doordone && !stopSpawn){
 			go = true;
+			stopSpawn = true;
 			Destroy(pfskickA_2);
 			spawnSFS(1, new Vector3(818f,114f,114f), 3);
 			stage = 1;
