@@ -1,6 +1,23 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Spawners\S11Spawner.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Spawners\S4Spawner.cs" Line="36" Column="3" />
+      <File FileName="Assets\Scripts\Spawners\S6Spawner.cs" Line="33" Column="4" />
+      <File FileName="Assets\Scripts\Spawners\S5Spawner.cs" Line="79" Column="53" />
+      <File FileName="Assets\Scripts\LevelDataScript.cs" Line="26" Column="24" />
+      <File FileName="Assets\Scripts\Spawners\S8Spawner.cs" Line="69" Column="11" />
+      <File FileName="Assets\Scripts\Spawners\S7Spawner.cs" Line="49" Column="1" />
+      <File FileName="Assets\Scripts\Spawners\S9Spawner.cs" Line="30" Column="2" />
+      <File FileName="Assets\Scripts\Spawners\S10Spawner.cs" Line="260" Column="1" />
+      <File FileName="Assets\Scripts\DoorBScript.cs" Line="30" Column="1" />
+      <File FileName="Assets\Scripts\Spawners\S11Spawner.cs" Line="232" Column="1" />
+      <File FileName="Assets\Scripts\Spawners\S1Spawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Spawners\S2Spawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Spawners\S3Spawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WhiteFSScript.cs" Line="328" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

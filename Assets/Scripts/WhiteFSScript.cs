@@ -315,7 +315,7 @@ public class WhiteFSScript : MonoBehaviour {
 	void die(){
 		//Placeholder
 		//Destroy(this.gameObject);
-		spawner.BroadcastMessage("PFSdied", num);
+		spawner.BroadcastMessage("WFSdied", num);
 	}
 	void punch(){
 		attacking = true;
