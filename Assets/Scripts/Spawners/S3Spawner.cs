@@ -48,6 +48,7 @@ public class S3Spawner : MonoBehaviour {
 		}
 		if(go){
 			if(goTime == 50){
+				cams.enemiesAlive += 1;
 				spawnSFS(2, new Vector3(left, 80f, 80f), 1);
 				stage = 2;
 			}else if(goTime == 100){
@@ -72,6 +73,7 @@ public class S3Spawner : MonoBehaviour {
 				spawnSFS (3, new Vector3(left, 105f, 105f), 1);
 				stage = 3;
 			}else if(goTime2 == 150){
+				cams.enemiesAlive -= 1;
 				spawnSFS (4, new Vector3(right, 105f, 105f), 2);
 				stage = 4;
 			}

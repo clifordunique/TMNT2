@@ -42,6 +42,7 @@ public class S10Spawner : MonoBehaviour {
 	void Update () {
 		if(go){
 			if(goTime == 0){
+				cams.enemiesAlive += 1;
 				spawnWFS(1, new Vector3(right, 40f, 40f), 2);
 				stage = 1;
 			}else if(goTime == 50){
@@ -66,6 +67,7 @@ public class S10Spawner : MonoBehaviour {
 				spawnWFS(2, new Vector3(left, 105f, 105f), 1);
 				stage = 2;
 			}else if(goTime2 == 100){
+				cams.enemiesAlive -= 1;
 				spawnWFS (3, new Vector3(right, 105f, 105f), 2);
 				stage = 4;
 				go2 = false;

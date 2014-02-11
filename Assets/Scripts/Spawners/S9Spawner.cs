@@ -54,6 +54,7 @@ public class S9Spawner : MonoBehaviour {
 		}
 		if(go){
 			if(goTime == 0){
+				cams.enemiesAlive += 1;
 				spawnSFS(2, new Vector3(left, 105f, 105f), 1);
 				stage = 1;
 			}else if(goTime == 50){
@@ -66,6 +67,7 @@ public class S9Spawner : MonoBehaviour {
 		}
 		if(go2){
 			if(goTime2 == 0){
+				cams.enemiesAlive -= 1;
 				spawnSFS (1, new Vector3(right, 105f, 105f), 2);
 				stage = 4;
 				go2 = false;

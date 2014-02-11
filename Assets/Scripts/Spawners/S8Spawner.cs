@@ -53,6 +53,7 @@ public class S8Spawner : MonoBehaviour {
 		}
 		if(go){
 			if(goTime == 0){
+				cams.enemiesAlive += 1;
 				spawnSFS(2, new Vector3(left, 105f, 105f), 1);
 				stage = 1;
 			}else if(goTime == 50){
@@ -68,6 +69,7 @@ public class S8Spawner : MonoBehaviour {
 				spawnSFS (1, new Vector3(right, 80f, 80f), 2);
 				stage = 1;
 			}else if(goTime2 == 50){
+				cams.enemiesAlive -= 1;
 				spawnSFS(2, new Vector3(right, 40f, 40f), 2);
 				stage = 4;
 				go2 = false;

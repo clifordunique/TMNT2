@@ -40,6 +40,7 @@ public class S7Spawner : MonoBehaviour {
 	void Update () {
 		if(go){
 			if(goTime == 0){
+				cams.enemiesAlive += 1;
 				spawnBFS(1, new Vector3(right, 105f, 105f), 2);
 				stage = 1;
 			}else if(goTime == 50){
@@ -61,6 +62,7 @@ public class S7Spawner : MonoBehaviour {
 				spawnBFS (3, new Vector3(left, 40f, 40f), 1);
 				stage = 3;
 			}else if(goTime2 == 150){
+				cams.enemiesAlive -= 1;
 				spawnBFS (4, new Vector3(right, 105f, 105f), 2);
 				stage = 4;
 				go2 = false;
