@@ -61,6 +61,7 @@ public class StarFSScript : MonoBehaviour {
 		float ydist = Mathf.Abs(playery-yPos);
 		//animator.SetBool ("Walking", false);
 		
+		animator.SetBool("Throwing", false);
 		
 		deltaX = 0;
 		deltaY = 0;
@@ -205,7 +206,7 @@ public class StarFSScript : MonoBehaviour {
 		
 		if((ydist < 8) && (xdist > punchdist + .7f) && throwCooldown <= 0)
 		{
-			throwCooldown = 3;
+			throwCooldown = 4;
 			throwStar();
 		}
 	}
@@ -272,6 +273,7 @@ public class StarFSScript : MonoBehaviour {
 		attackCollider.enabled = true;
 	}
 	void throwStar(){
+		animator.SetBool("Throwing", true);
 		float sx = transform.position.x + 24.5f * Mathf.Sign(transform.localScale.x);
 		float sy = yPos + 36f;
 		GameObject stargen = Instantiate(star, new Vector3(sx, sy, yPos), Quaternion.identity) as GameObject;
